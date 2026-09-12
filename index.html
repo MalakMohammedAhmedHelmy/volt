@@ -1,0 +1,2316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VOLT FITNESS</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="fontawesome-free-7.3.1-web/fontawesome-free-7.3.1-web/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- ================= HERO ================= -->
+
+    <section class="header" id="HOME">
+
+        <img src="img/cinematic_dynamic_high_resolution_gym_photo_athletic_muscular_man_and_woman.png"
+            alt="VOLT Fitness">
+
+        <div class="layer">
+
+            <!-- ================= NAVBAR ================= -->
+
+            <nav>
+
+                <div class="logo">
+
+                    <i class="fa-solid fa-bolt"></i>
+
+                    <div>
+                        <h2>VOLT.</h2>
+                        <span>FITNESS</span>
+                    </div>
+
+                </div>
+
+
+                <ul class="nav-links">
+
+                    <li><a href="#HOME">HOME</a></li>
+                    <li><a href="#PROGRAMS">PROGRAMS</a></li>
+                    <li><a href="#COACHES">COACHES</a></li>
+                    <li><a href="#MEMBERSHIPS">MEMBERSHIPS</a></li>
+                    <li><a href="#STORE">STORE</a></li>
+                    <li><a href="#ABOUT">ABOUT</a></li>
+                    <li><a href="#CONTACT">CONTACT</a></li>
+
+                </ul>
+
+
+                <!-- NAV ICONS -->
+
+                <div class="nav-icons">
+
+                    <div class="icon-box search-icon" id="searchIcon">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+
+                    <div class="search-box" id="searchBox">
+
+                        <input
+                            type="text"
+                            id="siteSearch"
+                            placeholder="Search programs, coaches, products..."
+                            autocomplete="off"
+                        >
+
+                        <button type="button" id="closeSearch">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+
+                        <div class="search-results" id="searchResults"></div>
+
+                    </div>
+
+
+                    <div class="icon-box">
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
+
+
+                    <!-- USER PROFILE -->
+
+                    <div class="user-profile" id="userProfile">
+
+                        <div class="icon-box user-icon" id="userIcon">
+                            <span id="userInitial"></span>
+                        </div>
+
+                        <div class="profile-dropdown" id="profileDropdown">
+
+                            <div class="profile-info">
+
+                                <div class="profile-avatar" id="profileAvatar">
+                                    M
+                                </div>
+
+                                <div>
+                                    <h4 id="profileName">Malak Mohamed</h4>
+                                    <p id="profileEmail">email@example.com</p>
+                                </div>
+
+                            </div>
+
+                            <div class="profile-divider"></div>
+
+                            <button type="button" class="profile-item">
+
+                                <i class="fa-regular fa-user"></i>
+
+                                <span>My Profile</span>
+
+                            </button>
+
+                            <button type="button" class="profile-item logout-btn" id="logoutBtn">
+
+                                <i class="fa-solid fa-right-from-bracket"></i>
+
+                                <span>Logout</span>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="icon-box menu">
+
+                        <i class="fa-solid fa-bars"></i>
+
+                    </div>
+
+                </div>
+
+            </nav>
+
+
+            <!-- ================= HERO CONTENT ================= -->
+
+            <div class="content">
+
+                <!-- TITLE -->
+
+                <h1>
+                    BUILD YOUR
+                    <span>STRONGEST</span>
+                    SELF
+                </h1>
+
+
+                <!-- DESCRIPTION -->
+
+                <p class="description">
+
+                    High-intensity athletic training, Olympic-tier equipment,
+                    and world-class dedicated coaching engineered to break
+                    your personal limits.
+
+                </p>
+
+
+                <!-- BUTTONS -->
+
+                <div class="buttons">
+
+                    <a href="#MEMBERSHIPS" class="join-btn">
+
+                        JOIN NOW
+
+                        <i class="fa-solid fa-bolt"></i>
+
+                    </a>
+
+
+                    <a href="#PROGRAMS" class="programs-btn">
+
+                        EXPLORE PROGRAMS
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+
+                <!-- ================= STAT CARDS ================= -->
+
+                <div class="stats">
+
+                    <div class="card">
+
+                        <h2>12K+</h2>
+
+                        <h3>ACTIVE ATHLETES</h3>
+
+                        <p>Global performance network</p>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <h2>45+</h2>
+
+                        <h3>MASTER COACHES</h3>
+
+                        <p>Certified Olympic specialists</p>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <h2>99.4%</h2>
+
+                        <h3>GOAL SUCCESS</h3>
+
+                        <p>Verified biomechanical progress</p>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <h2>24/7</h2>
+
+                        <h3>FACILITY ACCESS</h3>
+
+                        <p>Biometric keyless admission</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= MENU ================= -->
+
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<div class="menu-panel" id="menuPanel">
+
+    <!-- Close -->
+    <button class="menu-close" id="menuClose" type="button">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <!-- Header -->
+    <div class="menu-panel-header">
+
+        <i class="fa-solid fa-bolt"></i>
+
+        <div>
+            <span>VOLT FITNESS</span>
+            <small>PERFORMANCE CENTER</small>
+        </div>
+
+    </div>
+
+    <!-- Menu Items -->
+
+    <button class="menu-item" id="reviewsMenuBtn" type="button">
+
+        <div class="menu-item-icon">
+            <i class="fa-solid fa-star"></i>
+        </div>
+
+        <div class="menu-item-text">
+            <strong>Reviews</strong>
+            <span>See what our members say</span>
+        </div>
+
+        <i class="fa-solid fa-chevron-right"></i>
+
+    </button>
+
+
+    <button class="menu-item" id="contactMenuBtn" type="button">
+
+        <div class="menu-item-icon">
+            <i class="fa-solid fa-envelope"></i>
+        </div>
+
+        <div class="menu-item-text">
+            <strong>Contact Us</strong>
+            <span>Get in touch with VOLT</span>
+        </div>
+
+        <i class="fa-solid fa-chevron-right"></i>
+
+    </button>
+
+
+    <!-- Divider -->
+
+    <div class="menu-divider"></div>
+
+
+    <!-- Theme -->
+
+    <div class="menu-item theme-item">
+
+        <div class="menu-item-icon">
+            <i class="fa-solid fa-moon"></i>
+        </div>
+
+        <div class="menu-item-text">
+            <strong>Theme</strong>
+            <span id="themeText">Dark Mode</span>
+        </div>
+
+        <button
+            class="theme-switch"
+            id="themeSwitch"
+            type="button"
+        >
+            <span></span>
+        </button>
+
+    </div>
+
+
+    <!-- Settings -->
+
+    <button class="menu-item" id="settingsMenuBtn" type="button">
+
+        <div class="menu-item-icon">
+            <i class="fa-solid fa-gear"></i>
+        </div>
+
+        <div class="menu-item-text">
+            <strong>Settings</strong>
+            <span>Website preferences</span>
+        </div>
+
+        <i class="fa-solid fa-chevron-right"></i>
+
+    </button>
+
+
+    <!-- Footer -->
+
+    <div class="menu-footer">
+
+        <i class="fa-solid fa-bolt"></i>
+
+        <span>
+            TRAIN HARD. STAY VOLT.
+        </span>
+
+    </div>
+
+</div>
+
+    <!-- ================= PROGRAMS ================= -->
+
+    <section class="programs-section" id="PROGRAMS">
+
+        <!-- Section Header -->
+
+        <div class="programs-header">
+
+            <div class="programs-title">
+
+                <span class="engineered">
+
+                    <i class="fa-solid fa-dumbbell"></i>
+
+                    ENGINEERED MODULES
+
+                </span>
+
+                <h2>PERFORMANCE PROGRAMS</h2>
+
+                <p>
+
+                    Structured cycles designed by elite coaches to trigger
+                    hyper-adaptation, structural density, and cardiovascular
+                    threshold elevation.
+
+                </p>
+
+            </div>
+
+
+            <!-- Navigation -->
+
+            <ul class="nav-programs">
+
+                <li class="active">
+
+                    <a href="#PROGRAMS">
+                        ALL PROGRAMS
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="#Hypertrophy">
+                        HYPERTROPHY
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="#MaxStrength">
+                        MAX STRENGTH
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="#Endurance">
+                        ENDURANCE
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="#Foundations">
+                        FOUNDATIONS
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- Cards -->
+
+        <div class="programs-grid">
+
+            <!-- Card 1 -->
+
+            <div class="card-prog" data-category="Hypertrophy">
+
+                <div class="card-image">
+
+                    <img src="img/programs/Hypertrophy Velocity.jpg"
+                        alt="Hypertrophy Velocity">
+
+                    <span class="level advanced">
+                        ADVANCED
+                    </span>
+
+                    <span class="weeks">
+                        12 WEEKS
+                    </span>
+
+                    <span class="intensity">
+
+                        <i class="fa-solid fa-circle"></i>
+
+                        INTENSITY 9.4/10
+
+                    </span>
+
+                </div>
+
+
+                <div class="card-content">
+
+                    <span class="coach">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        Coach Marcus Vance
+
+                    </span>
+
+                    <h3>
+                        HYPERTROPHY VELOCITY
+                    </h3>
+
+                    <p>
+
+                        High-volume myofibrillar stimulation program
+                        optimized for explosive muscle growth,
+                        neurological recruitment, and fiber density.
+
+                    </p>
+
+
+                    <div class="card-footer">
+
+                        <span>
+
+                            <i class="fa-regular fa-clock"></i>
+
+                            5 Sessions / Wk
+
+                        </span>
+
+                        <button>
+                            DETAILS
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Card 2 -->
+
+            <div class="card-prog" data-category="MaxStrength">
+
+                <div class="card-image">
+
+                    <img src="img/programs/Iron Barbell Matrix.jpg"
+                        alt="Iron Barbell Matrix">
+
+                    <span class="level elite">
+                        ELITE
+                    </span>
+
+                    <span class="weeks">
+                        16 WEEKS
+                    </span>
+
+                    <span class="intensity">
+
+                        <i class="fa-solid fa-circle"></i>
+
+                        INTENSITY 9.8/10
+
+                    </span>
+
+                </div>
+
+
+                <div class="card-content">
+
+                    <span class="coach">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        Coach Elena Rostova
+
+                    </span>
+
+                    <h3>
+                        IRON BARBELL MATRIX
+                    </h3>
+
+                    <p>
+
+                        Olympic barbell fundamentals, CNS peaking cycles,
+                        and raw force production protocols designed
+                        to maximize strength.
+
+                    </p>
+
+
+                    <div class="card-footer">
+
+                        <span>
+
+                            <i class="fa-regular fa-clock"></i>
+
+                            4 Sessions / Wk
+
+                        </span>
+
+                        <button>
+                            DETAILS
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Card 3 -->
+
+            <div class="card-prog" data-category="Endurance">
+
+                <div class="card-image">
+
+                    <img src="img/programs/Lactate VO2 Peaking.jpg"
+                        alt="Lactate VO2 Peaking">
+
+                    <span class="level intermediate">
+                        INTERMEDIARY
+                    </span>
+
+                    <span class="weeks">
+                        8 WEEKS
+                    </span>
+
+                    <span class="intensity">
+
+                        <i class="fa-solid fa-circle"></i>
+
+                        INTENSITY 8.9/10
+
+                    </span>
+
+                </div>
+
+
+                <div class="card-content">
+
+                    <span class="coach">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        Coach Devante Cole
+
+                    </span>
+
+                    <h3>
+                        LACTATE VO2 PEAKING
+                    </h3>
+
+                    <p>
+
+                        Cardiovascular conditioning designed to expand
+                        lung capacity, raise anaerobic thresholds,
+                        and sustain maximum power outputs.
+
+                    </p>
+
+
+                    <div class="card-footer">
+
+                        <span>
+
+                            <i class="fa-regular fa-clock"></i>
+
+                            4 Sessions / Wk
+
+                        </span>
+
+                        <button>
+                            DETAILS
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Card 4 -->
+
+            <div class="card-prog" data-category="Foundations">
+
+                <div class="card-image">
+
+                    <img src="img/programs/Kinetic Mobility & Core.jpg"
+                        alt="Kinetic Mobility & Core">
+
+                    <span class="level advanced">
+                        ADVANCED
+                    </span>
+
+                    <span class="weeks">
+                        10 WEEKS
+                    </span>
+
+                    <span class="intensity">
+
+                        <i class="fa-solid fa-circle"></i>
+
+                        INTENSITY 8.5/10
+
+                    </span>
+
+                </div>
+
+
+                <div class="card-content">
+
+                    <span class="coach">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        Coach Marcus Vance
+
+                    </span>
+
+                    <h3>
+                        KINETIC MOBILITY & CORE
+                    </h3>
+
+                    <p>
+
+                        Corrective biomechanics, dynamic joint health,
+                        and multi-planar movement patterns engineered
+                        for injury resilience.
+
+                    </p>
+
+
+                    <div class="card-footer">
+
+                        <span>
+
+                            <i class="fa-regular fa-clock"></i>
+
+                            3 Sessions / Wk
+
+                        </span>
+
+                        <button>
+                            DETAILS
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Card 5 -->
+
+            <div class="card-prog" data-category="Hypertrophy">
+
+                <div class="card-image">
+
+                    <img src="img/programs/Upper Mass Division.png"
+                        alt="Upper Mass Division">
+
+                    <span class="level elite">
+                        ELITE
+                    </span>
+
+                    <span class="weeks">
+                        12 WEEKS
+                    </span>
+
+                    <span class="intensity">
+
+                        <i class="fa-solid fa-circle"></i>
+
+                        INTENSITY 9.1/10
+
+                    </span>
+
+                </div>
+
+
+                <div class="card-content">
+
+                    <span class="coach">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        Coach Elena Rostova
+
+                    </span>
+
+                    <h3>
+                        UPPER MASS DIVISION
+                    </h3>
+
+                    <p>
+
+                        Focused split targeting shoulders, back width,
+                        and triceps lockout power using variable
+                        resistance bands and chains.
+
+                    </p>
+
+
+                    <div class="card-footer">
+
+                        <span>
+
+                            <i class="fa-regular fa-clock"></i>
+
+                            4 Sessions / Wk
+
+                        </span>
+
+                        <button>
+                            DETAILS
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Card 6 -->
+
+            <div class="card-prog" data-category="MaxStrength">
+
+                <div class="card-image">
+
+                    <img src="img/programs/Weightlifting.jpg"
+                        alt="Weightlifting Mastery">
+
+                    <span class="level advanced">
+                        ADVANCED
+                    </span>
+
+                    <span class="weeks">
+                        14 WEEKS
+                    </span>
+
+                    <span class="intensity">
+
+                        <i class="fa-solid fa-circle"></i>
+
+                        INTENSITY 9.0/10
+
+                    </span>
+
+                </div>
+
+
+                <div class="card-content">
+
+                    <span class="coach">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        Coach Marcus Vance
+
+                    </span>
+
+                    <h3>
+                        WEIGHTLIFTING MASTERY
+                    </h3>
+
+                    <p>
+
+                        Technical synchronization of the snatch
+                        and clean & jerk with personalized high-speed
+                        video bar path analytics.
+
+                    </p>
+
+
+                    <div class="card-footer">
+
+                        <span>
+
+                            <i class="fa-regular fa-clock"></i>
+
+                            5 Sessions / Wk
+
+                        </span>
+
+                        <button>
+                            DETAILS
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COACHES ================= -->
+
+    <section class="COACHES-section" id="COACHES">
+
+        <!-- Section Header -->
+
+        <div class="coach-header">
+
+            <div class="coach-title">
+
+                <span class="engineered">
+
+                    <i class="fa-solid fa-medal" style="color: #b6f000;"></i>
+
+                    Olympic Pedigree
+
+                </span>
+
+                <h2>
+                    Master Coaching Staff
+                </h2>
+
+                <p>
+
+                    Every VOLT coach possesses international competition background,
+                    CSCS credentialing, and over a decade of high-performance athlete stewardship.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Cards -->
+
+        <div class="coach-grid">
+
+            <!-- Card 1 -->
+
+            <div class="card-coach">
+
+                <div class="card-img-coach">
+
+                    <img src="img/coachs/coach1.jpg"
+                        alt="Marcus Vance">
+
+                </div>
+
+
+                <div class="card-content-coach">
+
+                    <h3>
+                        Marcus Vance
+                    </h3>
+
+                    <h4>
+                        Hypertrophy & Biomechanics
+                    </h4>
+
+                    <p>
+
+                        Former national powerlifter specializing in muscle architecture,
+                        mechanical tension, and personalized biomechanical assessments.
+
+                    </p>
+
+
+                    <div class="card-footer-coach">
+
+                        <span>
+
+                            <i class="fa-solid fa-message"></i>
+
+                        </span>
+
+                        <button>
+                            CHOOSE COACH
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Card 2 -->
+
+            <div class="card-coach">
+
+                <div class="card-img-coach">
+
+                    <img src="img/coachs/coach2.jpg"
+                        alt="Elena Rostova">
+
+                </div>
+
+
+                <div class="card-content-coach">
+
+                    <h3>
+                        Elena Rostova
+                    </h3>
+
+                    <h4>
+                        Weightlifting & Peak Power
+                    </h4>
+
+                    <p>
+
+                        Olympic weightlifting specialist emphasizing speed-strength,
+                        CNS optimization, and dynamic explosive bar trajectory.
+
+                    </p>
+
+
+                    <div class="card-footer-coach">
+
+                        <span>
+
+                            <i class="fa-solid fa-message"></i>
+
+                        </span>
+
+                        <button>
+                            CHOOSE COACH
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Card 3 -->
+
+            <div class="card-coach">
+
+                <div class="card-img-coach">
+
+                    <img src="img/coachs/coach3.jpg"
+                        alt="Devante Cole">
+
+                </div>
+
+
+                <div class="card-content-coach">
+
+                    <h3>
+                        Devante Cole
+                    </h3>
+
+                    <h4>
+                        Cardio & Metabolic Conditioning
+                    </h4>
+
+                    <p>
+
+                        Track conditioning coach developing anaerobic reserve thresholds,
+                        sprint mechanics, and fast-twitch endurance pathways.
+
+                    </p>
+
+
+                    <div class="card-footer-coach">
+
+                        <span>
+
+                            <i class="fa-solid fa-message"></i>
+
+                        </span>
+
+                        <button>
+                            CHOOSE COACH
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Card 4 -->
+
+            <div class="card-coach">
+
+                <div class="card-img-coach">
+
+                    <img src="img/coachs/coach4.png"
+                        alt="Sarah Jenkins">
+
+                </div>
+
+
+                <div class="card-content-coach">
+
+                    <h3>
+                        Sarah Jenkins
+                    </h3>
+
+                    <h4>
+                        HIIT, Mobility & Rehab
+                    </h4>
+
+                    <p>
+
+                        Corrective biomechanics, dynamic joint health,
+                        and multi-planar movement patterns engineered.
+
+                    </p>
+
+
+                    <div class="card-footer-coach">
+
+                        <span>
+
+                            <i class="fa-solid fa-message"></i>
+
+                        </span>
+
+                        <button>
+                            CHOOSE COACH
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= STORE ================= -->
+
+    <section class="store-section" id="STORE">
+
+        <!-- Section Header -->
+
+        <div class="store-header">
+
+            <div class="store-title">
+
+                <span class="engineered">
+
+                    <i class="fa-solid fa-cart-shopping" style="color: #b6f000;"></i>
+
+                    Precision Hardware & Nutrition
+
+                </span>
+
+                <h2>
+                    VOLT Gear & Supplements
+                </h2>
+
+                <p>
+
+                    Lab-tested pharmaceutical grade compounds and competition-grade accessories
+                    built for the daily grind.
+
+                </p>
+
+            </div>
+
+
+            <!-- Navigation -->
+
+            <ul class="nav-store">
+
+                <li class="active">
+
+                    <a href="#All Items">
+                        ALL ITEMS
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="#Supplements">
+                        SUPPLEMENTS
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="#Protein">
+                        PROTEIN
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="#Accessories & Gear">
+                        ACCESSORIES & GEAR
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- ================= STORE CARDS ================= -->
+
+        <div class="store-grid">
+
+            <!-- CARD 1 -->
+
+            <div class="card-store">
+
+                <div class="card-img-store">
+
+                    <img src="img/store/VOLT ISO-Whey Hydrolyzed.jpg"
+                        alt="VOLT ISO-Whey Hydrolyzed">
+
+                    <div class="icon-box-store">
+
+                        <i class="fa-regular fa-heart"></i>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card-content-store">
+
+                    <span>
+                        27g Protein / Scoop
+                    </span>
+
+                    <h3>
+                        VOLT ISO-WHEY HYDROLYZED
+                    </h3>
+
+                    <p>
+
+                        Ultra-filtered 100% whey isolate
+                        with zero digestive friction.
+
+                    </p>
+
+
+                    <div class="card-footer-store">
+
+                        <span>
+                            $64.99
+                        </span>
+
+                        <button>
+                            + ADD
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 2 -->
+
+            <div class="card-store">
+
+                <div class="card-img-store">
+
+                    <img src="img/store/Kinetic Pre-Workout.jpg"
+                        alt="Kinetic Pre-Workout">
+
+                    <div class="icon-box-store">
+
+                        <i class="fa-regular fa-heart"></i>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card-content-store">
+
+                    <span>
+                        400mg Caffeine + L-Citrulline
+                    </span>
+
+                    <h3>
+                        KINETIC PRE-WORKOUT
+                    </h3>
+
+                    <p>
+
+                        High-stimulant nitric oxide pump
+                        and mental focus catalyst.
+
+                    </p>
+
+
+                    <div class="card-footer-store">
+
+                        <span>
+                            $44.50
+                        </span>
+
+                        <button>
+                            + ADD
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 3 -->
+
+            <div class="card-store">
+
+                <div class="card-img-store">
+
+                    <img src="img/store/Carbon Grip Straps.jpg"
+                        alt="Carbon Grip Straps">
+
+                    <div class="icon-box-store">
+
+                        <i class="fa-regular fa-heart"></i>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card-content-store">
+
+                    <span>
+                        IPF Approved
+                    </span>
+
+                    <h3>
+                        CARBON GRIP STRAPS
+                    </h3>
+
+                    <p>
+
+                        Rigid elastic reinforcement for
+                        maximal barbell pulling stability.
+
+                    </p>
+
+
+                    <div class="card-footer-store">
+
+                        <span>
+                            $29.00
+                        </span>
+
+                        <button>
+                            + ADD
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 4 -->
+
+            <div class="card-store">
+
+                <div class="card-img-store">
+
+                    <img src="img/store/Volt Steel Hydro Flask.jpg"
+                        alt="Volt Steel Hydro Flask">
+
+                    <div class="icon-box-store">
+
+                        <i class="fa-regular fa-heart"></i>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card-content-store">
+
+                    <span>
+                        32oz / 24h Cold
+                    </span>
+
+                    <h3>
+                        VOLT STEEL HYDRO FLASK
+                    </h3>
+
+                    <p>
+
+                        Double-wall vacuum insulation with
+                        leak-proof sports chug cap.
+
+                    </p>
+
+
+                    <div class="card-footer-store">
+
+                        <span>
+                            $38.00
+                        </span>
+
+                        <button>
+                            + ADD
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MEMBERSHIPS ================= -->
+
+    <section class="member-section" id="MEMBERSHIPS">
+
+        <!-- Section Header -->
+
+        <div class="member-header">
+
+            <div class="member-title">
+
+                <span class="engineered">
+
+                    <i class="fa-sharp fa-solid fa-award" style="color: #b6f000;"></i>
+
+                    Unrestricted Access
+
+                </span>
+
+                <h2>
+                    Membership Architecture
+                </h2>
+
+                <p>
+
+                    Select your training term. All tiers include full facility telemetry, recovery suites,
+                    and personalized coaching baseline assessment.
+
+                </p>
+
+            </div>
+
+
+            <!-- Navigation -->
+
+            <ul class="nav-member">
+
+                <li class="active">
+
+                    <a href="#Monthly">
+                        Monthly
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="#Term Commitment">
+
+                        Term Commitment
+
+                        <span>
+                            SAVE UP TO 25%
+                        </span>
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- ================= MEMBER CARDS ================= -->
+
+        <div class="member-grid">
+
+
+            <!-- ================= CARD 1 ================= -->
+
+            <div class="card-member">
+
+                <div class="card-content-member">
+
+                    <div class="member-tags">
+
+                        <span>
+                            Starter
+                        </span>
+
+                        <span>
+                            Rolling
+                        </span>
+
+                    </div>
+
+
+                    <h2>
+                        1 Month Pass
+                    </h2>
+
+                    <p>
+
+                        Full access for short-term
+                        visitors and trial athletes.
+
+                    </p>
+
+
+                    <div class="member-price"
+                        data-term-price="$79"
+                        data-term-text="/ month">
+
+                        <h3 class="price-monthly">
+                            $79
+                        </h3>
+
+                        <span class="price-text">
+                            / month
+                        </span>
+
+                    </div>
+
+
+                    <!-- FEATURES -->
+
+                    <div class="box-member">
+
+                        <div class="icon-box-member">
+
+                            <i class="fa-solid fa-check"></i>
+
+                            <span>
+                                24/7 Facility Keyless Access
+                            </span>
+
+                        </div>
+
+                        <div class="icon-box-member">
+
+                            <i class="fa-solid fa-check"></i>
+
+                            <span>
+                                Free Biometric Induction Scan
+                            </span>
+
+                        </div>
+
+                        <div class="icon-box-member">
+
+                            <i class="fa-solid fa-check"></i>
+
+                            <span>
+                                Locker Room & Cold Plunge
+                            </span>
+
+                        </div>
+
+                        <div class="icon-box-member">
+
+                            <i class="fa-solid fa-xmark"></i>
+
+                            <span>
+                                1-on-1 Dedicated Coach Consult
+                            </span>
+
+                        </div>
+
+                        <div class="icon-box-member">
+
+                            <i class="fa-solid fa-xmark"></i>
+
+                            <span>
+                                VOLT Store 15% Gear Discount
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FOOTER -->
+
+                    <div class="card-footer-member">
+
+                        <button type="button">
+                            Subscribe Now
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= CARD 2 ================= -->
+
+            <div class="card-member">
+
+                <div class="card-content-member">
+
+                    <div class="member-tags">
+
+                        <span>
+                            Quarterly
+                        </span>
+
+                        <span>
+                            7% Off
+                        </span>
+
+                    </div>
+
+
+                    <h2>
+                        3 Months Block
+                    </h2>
+
+                    <p>
+
+                        Dedicated cycle designed to
+                        solidify baseline habits.
+
+                    </p>
+
+
+                    <div class="member-price"
+                        data-monthly-price="$73"
+                        data-monthly-text="/ mo ($219 total)"
+                        data-term-price="$219"
+                        data-term-text="/ 3-months">
+
+                        <h3 class="price-monthly">
+                            $73
+                        </h3>
+
+                        <span class="price-text">
+                            / mo ($219 total)
+                        </span>
+
+                    </div>
+
+
+                    <!-- FEATURES -->
+
+                    <div class="box-member">
+
+                        <div class="icon-box-member">
+
+                            <i class="fa-solid fa-check"></i>
+
+                            <span>
+                                24/7 Facility Keyless Access
+                            </span>
+
+                        </div>
+
+                        <div class="icon-box-member">
+
+                            <i class="fa-solid fa-check"></i>
+
+                            <span>
+                                2x InBody DEXA Scans
+                            </span>
+
+                        </div>
+
+                        <div class="icon-box-member">
+
+                            <i class="fa-solid fa-check"></i>
+
+                            <span>
+                                Locker, Sauna & Plunge Suite
+                            </span>
+
+                        </div>
+
+                        <div class="icon-box-member">
+
+                            <i class="fa-solid fa-check"></i>
+
+                            <span>
+                                1x Monthly Coach Strategy Call
+                            </span>
+
+                        </div>
+
+                        <div class="icon-box-member">
+
+                            <i class="fa-solid fa-xmark"></i>
+
+                            <span>
+                                VOLT Store 15% Gear Discount
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FOOTER -->
+
+                    <div class="card-footer-member">
+
+                        <button type="button">
+                            Subscribe Now
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= CARD 3 ================= -->
+
+            <div class="card-member popular-card">
+
+                <div class="popular-label">
+                    MOST POPULAR
+                </div>
+
+
+                <div class="card-content-member">
+
+                    <div class="member-tags">
+
+                        <span>
+                            Pro Athlete
+                        </span>
+
+                        <span>
+                            16% Off
+                        </span>
+
+                    </div>
+
+
+                    <h2>
+                        6 Months Pro
+                    </h2>
+
+                    <p>
+
+                        The gold standard training block for
+                        noticeable physiological transformation.
+
+                    </p>
+
+
+                    <div class="member-price"
+                        data-monthly-price="$66"
+                        data-monthly-text="/ mo ($399 total)"
+                        data-term-price="$399"
+                        data-term-text="/ 6-months">
+
+                        <h3 class="price-monthly">
+                            $66
+                        </h3>
+
+                        <span class="price-text">
+                            / mo ($399 total)
+                        </span>
+
+                    </div>
+
+
+                    <!-- FEATURES -->
+
+                    <div class="box-member">
+
+                        <div class="icon-box-member">
+
+                            <i class="fa-solid fa-check"></i>
+
+                            <span>
+                                Full 24/7 Access + Guest Passes
+                            </span>
+
+                        </div>
+
+                        <div class="icon-box-member">
+
+                            <i class="fa-solid fa-check"></i>
+
+                            <span>
+                                Monthly Full Biometric Telemetry
+                            </span>
+
+                        </div>
+
+                        <div class="icon-box-member">
+
+                            <i class="fa-solid fa-check"></i>
+
+                            <span>
+                                1-on-1 Dedicated Coach Assessment
+                            </span>
+
+                        </div>
+
+                        <div class="icon-box-member">
+
+                            <i class="fa-solid fa-check"></i>
+
+                            <span>
+                                Infrared Sauna & Recovery Compression
+                            </span>
+
+                        </div>
+
+                        <div class="icon-box-member">
+
+                            <i class="fa-solid fa-check"></i>
+
+                            <span>
+                                10% Discount at VOLT Store
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FOOTER -->
+
+                    <div class="card-footer-member">
+
+                        <button type="button">
+                            Subscribe Now
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= CARD 4 ================= -->
+
+            <div class="card-member">
+
+                <div class="card-content-member">
+
+                    <div class="member-tags">
+
+                        <span>
+                            Annual Elite
+                        </span>
+
+                        <span>
+                            25% Off
+                        </span>
+
+                    </div>
+
+
+                    <h2>
+                        Yearly Apex
+                    </h2>
+
+                    <p>
+
+                        Unconditional 365-day athletic
+                        immersion with personal concierge.
+
+                    </p>
+
+
+                    <div class="member-price"
+                        data-monthly-price="$58"
+                        data-monthly-text="/ mo ($699 total)"
+                        data-term-price="$699"
+                        data-term-text="/ annual">
+
+                        <h3 class="price-monthly">
+                            $58
+                        </h3>
+
+                        <span class="price-text">
+                            / mo ($699 total)
+                        </span>
+
+                    </div>
+
+
+                    <!-- FEATURES -->
+
+                    <div class="box-member">
+
+                        <div class="icon-box-member">
+
+                            <i class="fa-solid fa-check"></i>
+
+                            <span>
+                                VIP All-Hours Global Access
+                            </span>
+
+                        </div>
+
+                        <div class="icon-box-member">
+
+                            <i class="fa-solid fa-check"></i>
+
+                            <span>
+                                Unlimited Biomarker DEXA Diagnostics
+                            </span>
+
+                        </div>
+
+                        <div class="icon-box-member">
+
+                            <i class="fa-solid fa-check"></i>
+
+                            <span>
+                                Weekly Nutrition & Macro Calibration
+                            </span>
+
+                        </div>
+
+                        <div class="icon-box-member">
+
+                            <i class="fa-solid fa-check"></i>
+
+                            <span>
+                                Private Locker + Daily Laundry Service
+                            </span>
+
+                        </div>
+
+                        <div class="icon-box-member">
+
+                            <i class="fa-solid fa-check"></i>
+
+                            <span>
+                                20% Permanent Store Discount
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FOOTER -->
+
+                    <div class="card-footer-member">
+
+                        <button type="button">
+                            Subscribe Now
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CONTACT ================= -->
+
+<section class="contact-section" id="CONTACT">
+
+    <div class="contact-card" id="contactCard">
+
+        <!-- Header -->
+
+        <div class="contact-card-header">
+
+            <div class="contact-icon">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
+
+            <div>
+                <span class="contact-label">
+                    CONNECT WITH VOLT
+                </span>
+
+                <h2>
+                    CONTACT <span>VOLT.</span>
+                </h2>
+
+                <p>
+                    Have a question, need coaching support, or want to
+                    start your performance journey?
+                </p>
+            </div>
+
+            <button
+                type="button"
+                class="contact-expand"
+                id="contactExpand"
+            >
+                <i class="fa-solid fa-arrow-down"></i>
+            </button>
+
+        </div>
+
+
+        <!-- Contact Details -->
+
+        <div class="contact-details" id="contactDetails">
+
+            <div class="contact-info-grid">
+
+                <div class="contact-info-box">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    <div>
+                        <span>LOCATION</span>
+                        <strong>VOLT Performance Center</strong>
+                        <p>Downtown Athletic District</p>
+                    </div>
+
+                </div>
+
+
+                <div class="contact-info-box">
+
+                    <i class="fa-solid fa-phone"></i>
+
+                    <div>
+                        <span>PHONE</span>
+                        <strong>+20 100 000 0000</strong>
+                        <p>Mon — Sun / 24 Hours</p>
+                    </div>
+
+                </div>
+
+
+                <div class="contact-info-box">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <div>
+                        <span>EMAIL</span>
+                        <strong>hello@voltfitness.com</strong>
+                        <p>Response within 24 hours</p>
+                    </div>
+
+                </div>
+
+
+                <div class="contact-info-box">
+
+                    <i class="fa-solid fa-clock"></i>
+
+                    <div>
+                        <span>OPENING HOURS</span>
+                        <strong>24 / 7 ACCESS</strong>
+                        <p>Staff Support: 8AM — 10PM</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Message -->
+
+            <div class="contact-message-area">
+
+                <div class="contact-message-title">
+
+                    <span>
+                        <i class="fa-solid fa-message"></i>
+                        SEND A MESSAGE
+                    </span>
+
+                    <p>
+                        Our team is ready to help.
+                    </p>
+
+                </div>
+
+
+                <form class="contact-form" id="contactForm">
+
+                    <div class="contact-input-row">
+
+                        <input
+                            type="text"
+                            id="contactName"
+                            placeholder="YOUR NAME"
+                            required
+                        >
+
+                        <input
+                            type="email"
+                            id="contactEmail"
+                            placeholder="YOUR EMAIL"
+                            required
+                        >
+
+                    </div>
+
+
+                    <textarea
+                        id="contactMessage"
+                        placeholder="TELL US HOW WE CAN HELP..."
+                        required
+                    ></textarea>
+
+
+                    <button
+                        type="submit"
+                        class="contact-submit"
+                    >
+                        SEND MESSAGE
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="main-footer">
+
+        <!-- Footer Main Content -->
+
+        <div class="footer-content" id="ABOUT">
+
+
+            <!-- Brand -->
+
+            <div class="footer-brand">
+
+                <div class="footer-logo">
+
+                    <i class="fa-solid fa-bolt"></i>
+
+                    <h2>
+                        VOLT<span>.</span>
+                    </h2>
+
+                </div>
+
+
+                <p class="footer-description">
+
+                    Engineered athletic performance, biological
+                    conditioning, and elite biomechanical telemetry
+                    for serious practitioners worldwide.
+
+                </p>
+
+
+                <div class="footer-architecture">
+
+                    <i class="fa-solid fa-bolt"></i>
+
+                    <span>
+                        PEAK CONDITIONING ARCHITECTURE
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Platform -->
+
+            <div class="footer-column">
+
+                <h3>
+                    PLATFORM
+                </h3>
+
+                <a href="#">
+                    Training Programs
+                </a>
+
+                <a href="#">
+                    Master Coaches
+                </a>
+
+                <a href="#">
+                    Tier Memberships
+                </a>
+
+                <a href="#">
+                    Apparel &amp; Gear
+                </a>
+
+            </div>
+
+
+            <!-- Organization -->
+
+            <div class="footer-column">
+
+                <h3>
+                    ORGANIZATION
+                </h3>
+
+                <a href="#">
+                    About VOLT
+                </a>
+
+                <a href="#">
+                    Contact &amp; Support
+                </a>
+
+                <a href="login.html">
+                    Athlete Portal
+                </a>
+
+                <a href="#">
+                    Facility Command
+                </a>
+
+            </div>
+
+
+            <!-- Telemetry -->
+
+            <div class="footer-telemetry">
+
+                <h3>
+                    TELEMETRY BRIEFING
+                </h3>
+
+                <p>
+
+                    Get weekly athletic protocols<br>
+                    and training diagnostics<br>
+                    delivered directly.
+
+                </p>
+
+
+                <form class="footer-email">
+
+                    <input
+                        type="email"
+                        placeholder="athlete@voltfitness.com"
+                    >
+
+                    <button type="submit">
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        
+
+        <!-- Footer Bottom -->
+
+        <div class="footer-bottom">
+
+            <p>
+                ©2026 VOLT Fitness Inc. Built for relentless intensity.
+            </p>
+
+
+            <div class="footer-links">
+
+                <a href="#">
+                    Privacy Policy
+                </a>
+
+                <a href="#">
+                    Terms of Service
+                </a>
+
+                <a href="#">
+                    Security Protocols
+                </a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script src="main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOLT LOGIN</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="fontawesome-free-7.3.1-web/fontawesome-free-7.3.1-web/css/all.min.css">
+</head>
+<body>
+   <!-- ====== SIGNUP PAGE ========== -->
+
+<section class="header" id="HOME">
+
+    <!-- Background Image -->
+    <img
+        class="hero-bg"
+        src="img/cinematic_dynamic_high_resolution_gym_photo_athletic_muscular_man_and_woman.png"
+        alt="VOLT Fitness"
+    >
+
+    <!-- Dark Overlay -->
+    <div class="layer">
+
+        <!-- =======  MAIN CONTENT ========== -->
+
+        <div class="signup-content">
+
+            <!-- ======  LEFT SIDE ========= -->
+
+            <div class="hero-left">
+
+                <!-- SMALL TITLE -->
+
+                <div class="join-label">
+
+                    JOIN VOLT FITNESS
+
+                </div>
+
+                <!-- MAIN TITLE -->
+
+                <h1>
+
+                    YOUR FITNESS
+                    JOURNEY
+
+                    <span>STARTS HERE.</span>
+
+                </h1>
+
+                <!-- DESCRIPTION -->
+
+                <p class="hero-description">
+
+                    Create your account and take the first step
+                    towards a healthier, stronger you.
+
+                </p>
+
+                <!-- =======  ICON FEATURES =========== -->
+
+                <div class="list-icons">
+
+                    <!-- TRACK -->
+
+                    <div class="signup-icon-box">
+
+                        <i class="fa-solid fa-ranking-star"></i>
+
+                        <span>
+                            TRACK<br>
+                            PROGRESS
+                        </span>
+
+                    </div>
+
+                    <!-- PLAN -->
+
+                    <div class="login-icon-box">
+
+                        <i class="fa-solid fa-dumbbell"></i>
+
+                        <span>
+                            PLAN<br>
+                            WORKOUTS
+                        </span>
+
+                    </div>
+
+                    <!-- ACCOUNTABLE -->
+
+                    <div class="login-icon-box">
+
+                        <i class="fa-solid fa-shield"></i>
+
+                        <span>
+                            STAY<br>
+                            ACCOUNTABLE
+                        </span>
+
+                    </div>
+
+                    <!-- ACHIEVE -->
+
+                    <div class="login-icon-box">
+
+                        <i class="fa-solid fa-star"></i>
+
+                        <span>
+                            ACHIEVE<br>
+                            MORE
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ========= RIGHT SIDE - SIGNUP CARD ============ -->
+
+            <div class="card-signup">
+
+                <!-- SIGNUP LOGO -->
+
+                <div class="signup-logo">
+
+                    <i class="fa-solid fa-bolt"></i>
+
+                    <div>
+
+                        <h2>VOLT.</h2>
+
+                        <span>FITNESS</span>
+
+                    </div>
+
+                </div>
+
+                <!-- SIGNUP TITLE -->
+
+                <div class="signup-heading">
+
+                    <h3>Create your account</h3>
+
+                    <p>
+                    Join Volt Fitness and start your journey
+                    </p>
+
+                </div>
+
+                <!-- ========= SIGNUP FORM =========== -->
+
+                <form class="signup-form" id="signupForm">
+
+                    <!-- FULL NAME -->
+
+                    <div class="input-group">
+
+                        <div class="user">
+                        <label for="name">
+
+                            <i class="fa-solid fa-user"></i>
+
+                            Full Name
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your full name"
+                            required
+                        >
+                        </div>
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="input-group">
+
+                        <label for="email">
+
+                            <i class="fa-regular fa-envelope"></i>
+
+                            Email Address
+
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="you@example.com"
+                            required
+                        >
+
+                    </div>
+
+                    <!-- PASSWORD -->
+
+                    <div class="input-group">
+
+                        <label for="password">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            Password
+
+                        </label>
+
+                        <div class="password-box">
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                required
+                            >
+
+                            <i
+                                class="fa-regular fa-eye password-eye"
+                                id="togglePassword"
+                            ></i>
+
+                        </div>
+
+                        <!--  CONFIRM PASSWORD -->
+
+                    <div class="input-group">
+
+                        <label for="password">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            Confirm Password
+
+                        </label>
+
+                        <div class="password-box">
+
+                            <input
+                                type="password"
+                                id="confirm_password"
+                                name="confirm_password"
+                                placeholder="Confirm your password"
+                                required
+                            >
+
+                            <i
+                                class="fa-regular fa-eye password-eye"
+                                id="togglePassword"
+                            ></i>
+
+                        </div>
+
+                    </div>
+
+                    <!-- =======  AGREE ========== -->
+
+                    <div class="login-options">
+
+                        <label class="agree">
+
+                            <input
+                                type="checkbox"
+                                name="agree">
+
+                            <span>
+                                I agree to the <a>Terms of Service</a> and <a>Privacy Policy</a>  
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                    <!-- =========  SIGNUP BUTTON ============ -->
+
+                    <div class="card-footer-signup">
+
+                        <button type="submit">
+
+                             SIGN UP 
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </button>
+
+                    </div>
+
+                    <!-- ============== OR ================= -->
+
+                    <div class="signup-or">
+
+                        <span></span>
+
+                        <p>OR</p>
+
+                        <span></span>
+
+                    </div>
+
+                    <!-- ============ GOOGLE BUTTON ============= -->
+
+                    <button
+                        type="button"
+                        class="google-signup">
+
+                        <i class="fa-brands fa-google"></i>
+
+                        Continue with Google
+
+                    </button>
+
+                    <!-- ========== LOGIN UP ============= -->
+
+                    <div class="signup-link">
+
+                        <span><a href="login.html">
+                            Already have an account?
+                            </a>
+                        </span>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<script src="main.js"></script>
+</body>
+</html>
