@@ -12,11 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const links = group.querySelectorAll('a');
 
-        links.forEach(link => {
+        links.forEach((link) => {
 
             link.addEventListener('click', (e) => {
 
-                group.querySelectorAll('li').forEach(li => {
+                group.querySelectorAll('li').forEach((li) => {
                     li.classList.remove('active');
                 });
 
@@ -45,10 +45,15 @@ document.addEventListener('DOMContentLoaded', () => {
                             '',
                             href
                         );
+
                     }
+
                 }
+
             });
+
         });
+
     }
 
     setupNavGroup('.nav-store');
@@ -74,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const programsSection =
             document.getElementById('PROGRAMS');
 
-        filterLinks.forEach(link => {
+        filterLinks.forEach((link) => {
 
             link.addEventListener('click', (e) => {
 
@@ -82,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 navProgramsList
                     .querySelectorAll('li')
-                    .forEach(li => {
+                    .forEach((li) => {
                         li.classList.remove('active');
                     });
 
@@ -94,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const category = href.slice(1);
 
-                programCards.forEach(card => {
+                programCards.forEach((card) => {
 
                     const matches =
                         category === 'PROGRAMS' ||
@@ -146,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const priceBoxes =
             document.querySelectorAll('.member-price');
 
-        toggleLinks.forEach(link => {
+        toggleLinks.forEach((link) => {
 
             link.addEventListener('click', (e) => {
 
@@ -154,18 +159,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 navMemberList
                     .querySelectorAll('li')
-                    .forEach(li => {
+                    .forEach((li) => {
                         li.classList.remove('active');
                     });
 
                 link.parentElement.classList.add('active');
 
-                const href = link.getAttribute('href');
+                const href =
+                    link.getAttribute('href');
 
                 const showTerm =
                     href === '#Term Commitment';
 
-                priceBoxes.forEach(box => {
+                priceBoxes.forEach((box) => {
 
                     const priceEl =
                         box.querySelector('.price-monthly');
@@ -249,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const mainSections =
         Array.from(mainNavLinks)
-            .map(link => {
+            .map((link) => {
 
                 const href =
                     link.getAttribute('href');
@@ -272,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let current =
             mainSections[0];
 
-        mainSections.forEach(section => {
+        mainSections.forEach((section) => {
 
             if (section.offsetTop <= scrollPos) {
                 current = section;
@@ -280,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         });
 
-        mainNavLinks.forEach(link => {
+        mainNavLinks.forEach((link) => {
 
             link.classList.remove(
                 'active-link'
@@ -303,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    mainNavLinks.forEach(link => {
+    mainNavLinks.forEach((link) => {
 
         link.addEventListener('click', (e) => {
 
@@ -364,62 +370,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* =========================================================
-       MOBILE MENU
-    ========================================================= */
-
-    const menuBtn =
-        document.querySelector(
-            '.icon-box.menu'
-        );
-
-    const navLinksList =
-        document.querySelector(
-            '.nav-links'
-        );
-
-
-    if (menuBtn && navLinksList) {
-
-        menuBtn.addEventListener('click', () => {
-
-            navLinksList.classList.toggle(
-                'show-mobile'
-            );
-
-        });
-
-
-        document.addEventListener(
-            'click',
-            (e) => {
-
-                const clickedInsideNav =
-                    navLinksList.contains(e.target) ||
-                    menuBtn.contains(e.target);
-
-                if (!clickedInsideNav) {
-
-                    navLinksList.classList.remove(
-                        'show-mobile'
-                    );
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =========================================================
        SIGNUP API
     ========================================================= */
 
     const signupForm =
-        document.getElementById(
-            'signupForm'
-        );
-
+        document.getElementById('signupForm');
 
     if (signupForm) {
 
@@ -430,30 +385,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
 
                 const name =
-                    document.getElementById(
-                        'name'
-                    ).value.trim();
+                    document.getElementById('name')
+                        .value.trim();
 
                 const email =
-                    document.getElementById(
-                        'email'
-                    ).value.trim();
+                    document.getElementById('email')
+                        .value.trim();
 
                 const password =
-                    document.getElementById(
-                        'password'
-                    ).value;
+                    document.getElementById('password')
+                        .value;
 
                 const confirmPassword =
-                    document.getElementById(
-                        'confirm_password'
-                    ).value;
+                    document.getElementById('confirm_password')
+                        .value;
 
 
-                if (
-                    password !==
-                    confirmPassword
-                ) {
+                if (password !== confirmPassword) {
 
                     alert(
                         'Passwords do not match'
@@ -521,9 +469,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             )[0];
 
                         if (
-                            Array.isArray(
-                                firstError
-                            )
+                            Array.isArray(firstError)
                         ) {
 
                             errorMessage =
@@ -559,10 +505,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ========================================================= */
 
     const loginForm =
-        document.getElementById(
-            'loginForm'
-        );
-
+        document.getElementById('loginForm');
 
     if (loginForm) {
 
@@ -573,14 +516,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
 
                 const email =
-                    document.getElementById(
-                        'email'
-                    ).value.trim();
+                    document.getElementById('email')
+                        .value.trim();
 
                 const password =
-                    document.getElementById(
-                        'password'
-                    ).value;
+                    document.getElementById('password')
+                        .value;
 
 
                 try {
@@ -618,20 +559,15 @@ document.addEventListener('DOMContentLoaded', () => {
                             data.token
                         );
 
-
                         localStorage.setItem(
                             'user',
-                            JSON.stringify(
-                                data.user
-                            )
+                            JSON.stringify(data.user)
                         );
-
 
                         alert(
                             data.message ||
                             'تم تسجيل الدخول بنجاح'
                         );
-
 
                         window.location.href =
                             './index.html';
@@ -669,44 +605,28 @@ document.addEventListener('DOMContentLoaded', () => {
     ========================================================= */
 
     const userProfile =
-        document.getElementById(
-            'userProfile'
-        );
+        document.getElementById('userProfile');
 
     const userIcon =
-        document.getElementById(
-            'userIcon'
-        );
+        document.getElementById('userIcon');
 
     const profileDropdown =
-        document.getElementById(
-            'profileDropdown'
-        );
+        document.getElementById('profileDropdown');
 
     const userInitial =
-        document.getElementById(
-            'userInitial'
-        );
+        document.getElementById('userInitial');
 
     const profileAvatar =
-        document.getElementById(
-            'profileAvatar'
-        );
+        document.getElementById('profileAvatar');
 
     const profileName =
-        document.getElementById(
-            'profileName'
-        );
+        document.getElementById('profileName');
 
     const profileEmail =
-        document.getElementById(
-            'profileEmail'
-        );
+        document.getElementById('profileEmail');
 
     const logoutBtn =
-        document.getElementById(
-            'logoutBtn'
-        );
+        document.getElementById('logoutBtn');
 
 
     if (
@@ -716,27 +636,18 @@ document.addEventListener('DOMContentLoaded', () => {
     ) {
 
         const savedUser =
-            localStorage.getItem(
-                'user'
-            );
+            localStorage.getItem('user');
 
         const token =
-            localStorage.getItem(
-                'token'
-            );
+            localStorage.getItem('token');
 
 
-        if (
-            savedUser &&
-            token
-        ) {
+        if (savedUser && token) {
 
             try {
 
                 const user =
-                    JSON.parse(
-                        savedUser
-                    );
+                    JSON.parse(savedUser);
 
 
                 if (user.name) {
@@ -762,25 +673,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
 
-                if (
-                    user.name &&
-                    profileName
-                ) {
-
+                if (user.name && profileName) {
                     profileName.textContent =
                         user.name;
-
                 }
 
 
-                if (
-                    user.email &&
-                    profileEmail
-                ) {
-
+                if (user.email && profileEmail) {
                     profileEmail.textContent =
                         user.email;
-
                 }
 
             }
@@ -795,7 +696,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
         }
-
 
         else {
 
@@ -828,9 +728,7 @@ document.addEventListener('DOMContentLoaded', () => {
             (e) => {
 
                 if (
-                    !userProfile.contains(
-                        e.target
-                    )
+                    !userProfile.contains(e.target)
                 ) {
 
                     profileDropdown.classList.remove(
@@ -849,14 +747,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 'click',
                 () => {
 
-                    localStorage.removeItem(
-                        'token'
-                    );
+                    localStorage.removeItem('token');
 
-                    localStorage.removeItem(
-                        'user'
-                    );
-
+                    localStorage.removeItem('user');
 
                     window.location.href =
                         './login.html';
@@ -1143,9 +1036,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     `;
 
-    document.head.appendChild(
-        paymentStyle
-    );
+    document.head.appendChild(paymentStyle);
 
 
     /* =========================================================
@@ -1154,7 +1045,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const demoPayment =
         document.createElement('div');
-
 
     demoPayment.innerHTML = `
 
@@ -1182,9 +1072,7 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
 
 
-    document.body.appendChild(
-        demoPayment
-    );
+    document.body.appendChild(demoPayment);
 
 
     /* =========================================================
@@ -1192,19 +1080,13 @@ document.addEventListener('DOMContentLoaded', () => {
     ========================================================= */
 
     const demoOverlay =
-        document.getElementById(
-            'demoPaymentOverlay'
-        );
+        document.getElementById('demoPaymentOverlay');
 
     const demoClose =
-        document.getElementById(
-            'demoPaymentClose'
-        );
+        document.getElementById('demoPaymentClose');
 
     const demoPaymentContent =
-        document.getElementById(
-            'demoPaymentContent'
-        );
+        document.getElementById('demoPaymentContent');
 
 
     /* =========================================================
@@ -1217,36 +1099,26 @@ document.addEventListener('DOMContentLoaded', () => {
         );
 
 
-    subscribeButtons.forEach(button => {
+    subscribeButtons.forEach((button) => {
 
         button.addEventListener(
             'click',
             function () {
 
                 const card =
-                    this.closest(
-                        '.card-member'
-                    );
+                    this.closest('.card-member');
 
                 if (!card) return;
 
 
                 const plan =
-                    card.querySelector(
-                        '.member-plan'
-                    );
-
+                    card.querySelector('.member-plan');
 
                 const price =
-                    card.querySelector(
-                        '.price-monthly'
-                    );
-
+                    card.querySelector('.price-monthly');
 
                 const priceText =
-                    card.querySelector(
-                        '.price-text'
-                    );
+                    card.querySelector('.price-text');
 
 
                 selectedMembership = {
@@ -1375,18 +1247,13 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
 
 
-        demoOverlay.classList.add(
-            'show'
-        );
+        demoOverlay.classList.add('show');
 
-        document.body.style.overflow =
-            'hidden';
+        document.body.style.overflow = 'hidden';
 
 
         document
-            .getElementById(
-                'demoWalletMethod'
-            )
+            .getElementById('demoWalletMethod')
             .addEventListener(
                 'click',
                 showWalletPayment
@@ -1394,9 +1261,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         document
-            .getElementById(
-                'demoCardMethod'
-            )
+            .getElementById('demoCardMethod')
             .addEventListener(
                 'click',
                 showCardPayment
@@ -1479,9 +1344,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         document
-            .getElementById(
-                'demoBackBtn'
-            )
+            .getElementById('demoBackBtn')
             .addEventListener(
                 'click',
                 showPaymentStart
@@ -1489,9 +1352,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         document
-            .getElementById(
-                'demoPayBtn'
-            )
+            .getElementById('demoPayBtn')
             .addEventListener(
                 'click',
                 processWalletPayment
@@ -1507,9 +1368,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function processWalletPayment() {
 
         const walletInput =
-            document.getElementById(
-                'walletNumber'
-            );
+            document.getElementById('walletNumber');
 
 
         const number =
@@ -1518,11 +1377,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 : '';
 
 
-        if (
-            !/^01[0125][0-9]{8}$/.test(
-                number
-            )
-        ) {
+        if (!/^01[0125][0-9]{8}$/.test(number)) {
 
             alert(
                 'Please enter a valid Egyptian mobile number.'
@@ -1595,9 +1450,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         document
-            .getElementById(
-                'verifyOtp'
-            )
+            .getElementById('verifyOtp')
             .addEventListener(
                 'click',
                 verifyDemoOTP
@@ -1613,9 +1466,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function verifyDemoOTP() {
 
         const otpInput =
-            document.getElementById(
-                'demoOtp'
-            );
+            document.getElementById('demoOtp');
 
 
         const otp =
@@ -1624,11 +1475,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 : '';
 
 
-        if (
-            !/^[0-9]{6}$/.test(
-                otp
-            )
-        ) {
+        if (!/^[0-9]{6}$/.test(otp)) {
 
             alert(
                 'Enter a 6-digit verification code.'
@@ -1689,9 +1536,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         document
-            .getElementById(
-                'finishPayment'
-            )
+            .getElementById('finishPayment')
             .addEventListener(
                 'click',
                 closeDemoPayment
@@ -1822,9 +1667,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         document
-            .getElementById(
-                'demoBackBtn'
-            )
+            .getElementById('demoBackBtn')
             .addEventListener(
                 'click',
                 showPaymentStart
@@ -1832,9 +1675,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         document
-            .getElementById(
-                'demoCardPayBtn'
-            )
+            .getElementById('demoCardPayBtn')
             .addEventListener(
                 'click',
                 processCardPayment
@@ -1850,30 +1691,21 @@ document.addEventListener('DOMContentLoaded', () => {
     function processCardPayment() {
 
         const cardNumberInput =
-            document.getElementById(
-                'demoCardNumber'
-            );
+            document.getElementById('demoCardNumber');
 
         const cardNameInput =
-            document.getElementById(
-                'demoCardName'
-            );
+            document.getElementById('demoCardName');
 
         const expiryInput =
-            document.getElementById(
-                'demoExpiry'
-            );
+            document.getElementById('demoExpiry');
 
         const cvvInput =
-            document.getElementById(
-                'demoCVV'
-            );
+            document.getElementById('demoCVV');
 
 
         const cardNumber =
             cardNumberInput
-                ? cardNumberInput.value
-                    .replace(/\s/g, '')
+                ? cardNumberInput.value.replace(/\s/g, '')
                 : '';
 
 
@@ -1895,9 +1727,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 : '';
 
 
-        if (
-            cardNumber.length < 16
-        ) {
+        if (cardNumber.length < 16) {
 
             alert(
                 'Please enter a valid card number.'
@@ -1919,11 +1749,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
 
-        if (
-            !/^\d{2}\/\d{2}$/.test(
-                expiry
-            )
-        ) {
+        if (!/^\d{2}\/\d{2}$/.test(expiry)) {
 
             alert(
                 'Please enter expiry date as MM/YY.'
@@ -1934,11 +1760,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
 
-        if (
-            !/^\d{3}$/.test(
-                cvv
-            )
-        ) {
+        if (!/^\d{3}$/.test(cvv)) {
 
             alert(
                 'Please enter a valid CVV.'
@@ -1952,825 +1774,10 @@ document.addEventListener('DOMContentLoaded', () => {
         showPaymentSuccess();
 
     }
-
-
-    /* =========================================================
-       CLOSE PAYMENT
-    ========================================================= */
-
-    function closeDemoPayment() {
-
-        demoOverlay.classList.remove(
-            'show'
-        );
-
-        document.body.style.overflow =
-            '';
-
-        selectedMembership = null;
-
-    }
-
-
-    /* =========================================================
-       CLOSE BUTTON
-    ========================================================= */
-
-    if (demoClose) {
-
-        demoClose.addEventListener(
-            'click',
-            closeDemoPayment
-        );
-
-    }
-
-
-    /* =========================================================
-       CLICK OUTSIDE
-    ========================================================= */
-
-    if (demoOverlay) {
-
-        demoOverlay.addEventListener(
-            'click',
-            function (e) {
-
-                if (
-                    e.target === demoOverlay
-                ) {
-
-                    closeDemoPayment();
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =========================================================
-       SITE SEARCH
-    ========================================================= */
-
-    const searchIcon =
-        document.getElementById(
-            'searchIcon'
-        );
-
-    const searchBox =
-        document.getElementById(
-            'searchBox'
-        );
-
-    const siteSearch =
-        document.getElementById(
-            'siteSearch'
-        );
-
-    const closeSearch =
-        document.getElementById(
-            'closeSearch'
-        );
-
-    const searchResults =
-        document.getElementById(
-            'searchResults'
-        );
-
-
-    if (
-        searchIcon &&
-        searchBox &&
-        siteSearch &&
-        closeSearch &&
-        searchResults
-    ) {
-
-        const searchData = [
-
-            /* ================= PROGRAMS ================= */
-
-            {
-                title: 'HYPERTROPHY VELOCITY',
-                type: 'Program',
-                keywords: 'hypertrophy marcus vance muscle growth',
-                selector: '.card-prog:nth-child(1)'
-            },
-
-            {
-                title: 'IRON BARBELL MATRIX',
-                type: 'Program',
-                keywords: 'max strength elena rostova strength',
-                selector: '.card-prog:nth-child(2)'
-            },
-
-            {
-                title: 'LACTATE VO2 PEAKING',
-                type: 'Program',
-                keywords: 'endurance devante cole cardio',
-                selector: '.card-prog:nth-child(3)'
-            },
-
-            {
-                title: 'KINETIC MOBILITY & CORE',
-                type: 'Program',
-                keywords: 'foundations mobility core marcus vance',
-                selector: '.card-prog:nth-child(4)'
-            },
-
-            {
-                title: 'UPPER MASS DIVISION',
-                type: 'Program',
-                keywords: 'hypertrophy elena rostova upper mass',
-                selector: '.card-prog:nth-child(5)'
-            },
-
-            {
-                title: 'WEIGHTLIFTING MASTERY',
-                type: 'Program',
-                keywords: 'max strength weightlifting marcus vance',
-                selector: '.card-prog:nth-child(6)'
-            },
-
-
-            /* ================= COACHES ================= */
-
-            {
-                title: 'Marcus Vance',
-                type: 'Coach',
-                keywords: 'hypertrophy biomechanics powerlifting',
-                selector: '.card-coach:nth-child(1)'
-            },
-
-            {
-                title: 'Elena Rostova',
-                type: 'Coach',
-                keywords: 'weightlifting peak power olympic',
-                selector: '.card-coach:nth-child(2)'
-            },
-
-            {
-                title: 'Devante Cole',
-                type: 'Coach',
-                keywords: 'cardio metabolic conditioning track',
-                selector: '.card-coach:nth-child(3)'
-            },
-
-            {
-                title: 'Sarah Jenkins',
-                type: 'Coach',
-                keywords: 'hiit mobility rehab biomechanics',
-                selector: '.card-coach:nth-child(4)'
-            },
-
-
-            /* ================= STORE ================= */
-
-            {
-                title: 'VOLT ISO-WHEY HYDROLYZED',
-                type: 'Store',
-                keywords: 'protein whey supplement 27g',
-                selector: '.card-store:nth-child(1)'
-            },
-
-            {
-                title: 'KINETIC PRE-WORKOUT',
-                type: 'Store',
-                keywords: 'pre workout caffeine supplement',
-                selector: '.card-store:nth-child(2)'
-            },
-
-            {
-                title: 'CARBON GRIP STRAPS',
-                type: 'Store',
-                keywords: 'accessories gear grip straps',
-                selector: '.card-store:nth-child(3)'
-            },
-
-            {
-                title: 'VOLT STEEL HYDRO FLASK',
-                type: 'Store',
-                keywords: 'flask bottle water gear',
-                selector: '.card-store:nth-child(4)'
-            },
-
-
-            /* ================= MEMBERSHIPS ================= */
-
-            {
-                title: '1 Month Pass',
-                type: 'Membership',
-                keywords: 'monthly membership starter rolling 79',
-                selector: '.card-member:nth-child(1)'
-            },
-
-            {
-                title: '3 Months Block',
-                type: 'Membership',
-                keywords: 'quarterly membership 219 7 off',
-                selector: '.card-member:nth-child(2)'
-            },
-
-            {
-                title: '6 Months Pro',
-                type: 'Membership',
-                keywords: 'pro athlete membership 399 popular',
-                selector: '.card-member:nth-child(3)'
-            },
-
-            {
-                title: 'Yearly Apex',
-                type: 'Membership',
-                keywords: 'annual elite yearly membership 699',
-                selector: '.card-member:nth-child(4)'
-            }
-
-        ];
-
-
-        /* ================= OPEN SEARCH ================= */
-
-        searchIcon.addEventListener(
-            'click',
-            function () {
-
-                searchBox.classList.add(
-                    'show'
-                );
-
-                setTimeout(() => {
-
-                    siteSearch.focus();
-
-                }, 200);
-
-            }
-        );
-
-
-        /* ================= CLOSE SEARCH ================= */
-
-        closeSearch.addEventListener(
-            'click',
-            function () {
-
-                searchBox.classList.remove(
-                    'show'
-                );
-
-                siteSearch.value =
-                    '';
-
-                searchResults.innerHTML =
-                    '';
-
-            }
-        );
-
-
-        /* ================= SEARCH ================= */
-
-        siteSearch.addEventListener(
-            'input',
-            function () {
-
-                const query =
-                    this.value
-                        .trim()
-                        .toLowerCase();
-
-
-                if (!query) {
-
-                    searchResults.innerHTML =
-                        '';
-
-                    return;
-
-                }
-
-
-                const results =
-                    searchData.filter(
-                        item =>
-
-                            item.title
-                                .toLowerCase()
-                                .includes(query) ||
-
-                            item.keywords
-                                .toLowerCase()
-                                .includes(query) ||
-
-                            item.type
-                                .toLowerCase()
-                                .includes(query)
-
-                    );
-
-
-                if (
-                    results.length === 0
-                ) {
-
-                    searchResults.innerHTML = `
-
-                        <div class="no-results">
-                            No results found
-                        </div>
-
-                    `;
-
-                    return;
-
-                }
-
-
-                searchResults.innerHTML =
-                    results
-                        .map(
-                            item => `
-
-                                <div
-                                    class="search-result"
-                                    data-selector="${item.selector}"
-                                >
-
-                                    <strong>
-                                        ${item.title}
-                                    </strong>
-
-                                    <span>
-                                        ${item.type}
-                                    </span>
-
-                                </div>
-
-                            `
-                        )
-                        .join('');
-
-
-                /* ================= CLICK RESULT ================= */
-
-                document
-                    .querySelectorAll(
-                        '.search-result'
-                    )
-                    .forEach(
-                        result => {
-
-                            result.addEventListener(
-                                'click',
-                                function () {
-
-                                    const selector =
-                                        this.dataset.selector;
-
-
-                                    const target =
-                                        document.querySelector(
-                                            selector
-                                        );
-
-
-                                    if (target) {
-
-                                        searchBox.classList.remove(
-                                            'show'
-                                        );
-
-
-                                        siteSearch.value =
-                                            '';
-
-                                        searchResults.innerHTML =
-                                            '';
-
-
-                                        setTimeout(() => {
-
-                                            target.scrollIntoView({
-                                                behavior: 'smooth',
-                                                block: 'center'
-                                            });
-
-
-                                            target.classList.add(
-                                                'search-highlight'
-                                            );
-
-
-                                            setTimeout(() => {
-
-                                                target.classList.remove(
-                                                    'search-highlight'
-                                                );
-
-                                            }, 2000);
-
-                                        }, 200);
-
-                                    }
-
-                                }
-                            );
-
-                        }
-                    );
-
-            }
-        );
-
-
-        /* ================= CLOSE WHEN CLICK OUTSIDE ================= */
-
-        document.addEventListener(
-            'click',
-            function (event) {
-
-                if (
-                    !searchBox.contains(
-                        event.target
-                    ) &&
-                    !searchIcon.contains(
-                        event.target
-                    )
-                ) {
-
-                    searchBox.classList.remove(
-                        'show'
-                    );
-
-                }
-
-            }
-        );
-
-    }
-
-    // ================= PROGRAM DETAILS =================
-
-const programDetailsStyle = document.createElement('style');
-
-programDetailsStyle.textContent = `
-    .program-details-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.85);
-        display: none;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-        z-index: 99999;
-        backdrop-filter: blur(8px);
-    }
-
-    .program-details-overlay.show {
-        display: flex;
-    }
-
-    .program-details-modal {
-        position: relative;
-        width: min(600px, 100%);
-        max-height: 90vh;
-        overflow-y: auto;
-        background: #111;
-        border: 1px solid rgba(182, 240, 0, 0.35);
-        border-radius: 18px;
-        padding: 32px;
-        box-shadow: 0 0 50px rgba(182, 240, 0, 0.12);
-    }
-
-    .program-details-close {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        width: 38px;
-        height: 38px;
-        border: 1px solid #333;
-        border-radius: 50%;
-        background: #1b1b1b;
-        color: #fff;
-        font-size: 18px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    .program-details-close:hover {
-        background: #b6f000;
-        color: #000;
-        transform: rotate(90deg);
-    }
-
-    .program-details-label {
-        display: inline-block;
-        color: #b6f000;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 2px;
-        margin-bottom: 10px;
-    }
-
-    .program-details-modal h2 {
-        color: #fff;
-        font-size: 28px;
-        margin: 0 0 18px;
-        line-height: 1.2;
-    }
-
-    .program-details-coach {
-        color: #b6f000;
-        font-size: 14px;
-        margin-bottom: 20px;
-    }
-
-    .program-details-description {
-        color: #aaa;
-        line-height: 1.8;
-        font-size: 15px;
-        margin-bottom: 25px;
-    }
-
-    .program-details-info {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-        margin-bottom: 25px;
-    }
-
-    .program-info-box {
-        background: #181818;
-        border: 1px solid #292929;
-        border-radius: 10px;
-        padding: 15px;
-    }
-
-    .program-info-box span {
-        display: block;
-        color: #777;
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: 6px;
-    }
-
-    .program-info-box strong {
-        color: #fff;
-        font-size: 14px;
-    }
-
-    .program-details-action {
-        width: 100%;
-        padding: 14px;
-        border: none;
-        border-radius: 8px;
-        background: #b6f000;
-        color: #000;
-        font-weight: 800;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    .program-details-action:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(182, 240, 0, 0.2);
-    }
-
-    @media (max-width: 500px) {
-        .program-details-modal {
-            padding: 25px 20px;
-        }
-
-        .program-details-modal h2 {
-            font-size: 22px;
-        }
-
-        .program-details-info {
-            grid-template-columns: 1fr;
-        }
-    }
-`;
-
-document.head.appendChild(programDetailsStyle);
-
-
-// إنشاء نافذة التفاصيل
-
-const programDetailsModal = document.createElement('div');
-
-programDetailsModal.className = 'program-details-overlay';
-
-programDetailsModal.innerHTML = `
-    <div class="program-details-modal">
-
-        <button
-            type="button"
-            class="program-details-close"
-            id="programDetailsClose"
-        >
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-
-        <span class="program-details-label">
-            PROGRAM DETAILS
-        </span>
-
-        <h2 id="detailsProgramName"></h2>
-
-        <div class="program-details-coach" id="detailsProgramCoach"></div>
-
-        <p
-            class="program-details-description"
-            id="detailsProgramDescription"
-        ></p>
-
-        <div class="program-details-info">
-
-            <div class="program-info-box">
-                <span>Level</span>
-                <strong id="detailsProgramLevel"></strong>
-            </div>
-
-            <div class="program-info-box">
-                <span>Duration</span>
-                <strong id="detailsProgramWeeks"></strong>
-            </div>
-
-            <div class="program-info-box">
-                <span>Training</span>
-                <strong id="detailsProgramSessions"></strong>
-            </div>
-
-            <div class="program-info-box">
-                <span>Intensity</span>
-                <strong id="detailsProgramIntensity"></strong>
-            </div>
-
-        </div>
-
-        <button
-            type="button"
-            class="program-details-action"
-            id="programDetailsAction"
-        >
-            CLOSE DETAILS
-        </button>
-
-    </div>
-`;
-
-document.body.appendChild(programDetailsModal);
-
-
-// عناصر النافذة
-
-const detailsProgramName =
-    document.getElementById('detailsProgramName');
-
-const detailsProgramCoach =
-    document.getElementById('detailsProgramCoach');
-
-const detailsProgramDescription =
-    document.getElementById('detailsProgramDescription');
-
-const detailsProgramLevel =
-    document.getElementById('detailsProgramLevel');
-
-const detailsProgramWeeks =
-    document.getElementById('detailsProgramWeeks');
-
-const detailsProgramSessions =
-    document.getElementById('detailsProgramSessions');
-
-const detailsProgramIntensity =
-    document.getElementById('detailsProgramIntensity');
-
-const programDetailsClose =
-    document.getElementById('programDetailsClose');
-
-const programDetailsAction =
-    document.getElementById('programDetailsAction');
-
-
-// كل أزرار DETAILS
-
-document.querySelectorAll('.card-prog .card-footer button').forEach(button => {
-
-    button.addEventListener('click', function () {
-
-        const card = this.closest('.card-prog');
-
-        if (!card) return;
-
-
-        // البيانات الموجودة داخل نفس الكارت
-
-        const name =
-            card.querySelector('.card-content h3')?.textContent.trim()
-            || 'Program';
-
-        const coach =
-            card.querySelector('.coach')?.textContent.trim()
-            || 'Coach';
-
-        const description =
-            card.querySelector('.card-content p')?.textContent.trim()
-            || 'No description available.';
-
-        const level =
-            card.querySelector('.level')?.textContent.trim()
-            || 'N/A';
-
-        const weeks =
-            card.querySelector('.weeks')?.textContent.trim()
-            || 'N/A';
-
-        const sessions =
-            card.querySelector('.card-footer span')?.textContent.trim()
-            || 'N/A';
-
-        const intensity =
-            card.querySelector('.intensity')?.textContent.trim()
-            || 'N/A';
-
-
-        // عرض البيانات
-
-        detailsProgramName.textContent = name;
-
-        detailsProgramCoach.innerHTML =
-            `<i class="fa-solid fa-user"></i> ${coach}`;
-
-        detailsProgramDescription.textContent =
-            description;
-
-        detailsProgramLevel.textContent =
-            level;
-
-        detailsProgramWeeks.textContent =
-            weeks;
-
-        detailsProgramSessions.textContent =
-            sessions;
-
-        detailsProgramIntensity.textContent =
-            intensity;
-
-
-        // فتح النافذة
-
-        programDetailsModal.classList.add('show');
-
-    });
-
-});
-
-
-// إغلاق النافذة
-
-function closeProgramDetails() {
-    programDetailsModal.classList.remove('show');
-}
-
-programDetailsClose.addEventListener(
-    'click',
-    closeProgramDetails
-);
-
-programDetailsAction.addEventListener(
-    'click',
-    closeProgramDetails
-);
-
-
-// الضغط خارج النافذة
-
-programDetailsModal.addEventListener('click', function (e) {
-
-    if (e.target === programDetailsModal) {
-        closeProgramDetails();
-    }
-
-});
-
-
-// زر ESC
-
-document.addEventListener('keydown', function (e) {
-
-    if (e.key === 'Escape') {
-        closeProgramDetails();
-    }
-
-});
-
-// ================= MENU PANEL =================
+    // ================= MENU PANEL =================
 
 const menuIcon =
-    document.querySelector('.nav-icons .menu');
+    document.querySelector('.icon-box.menu');
 
 const menuPanel =
     document.getElementById('menuPanel');
@@ -2782,17 +1789,50 @@ const menuClose =
     document.getElementById('menuClose');
 
 
-// ================= OPEN MENU =================
+// ================= MENU OPEN =================
 
-if (menuIcon && menuPanel && menuOverlay) {
+if (menuIcon) {
 
     menuIcon.addEventListener('click', () => {
 
-        menuPanel.classList.add('show');
+        const savedUser =
+            localStorage.getItem('user');
 
-        menuOverlay.classList.add('show');
+        let user = null;
 
-        document.body.style.overflow = 'hidden';
+        try {
+
+            user = savedUser
+                ? JSON.parse(savedUser)
+                : null;
+
+        } catch (error) {
+
+            user = null;
+
+        }
+
+
+        // ADMIN
+if (user && user.role === 'admin') {
+
+    window.location.href = 'http://127.0.0.1:8000/dashboard';
+
+    return;
+
+}
+
+
+        // NORMAL USER
+        if (menuPanel && menuOverlay) {
+
+            menuPanel.classList.add('show');
+
+            menuOverlay.classList.add('show');
+
+            document.body.style.overflow = 'hidden';
+
+        }
 
     });
 
@@ -2804,11 +1844,15 @@ if (menuIcon && menuPanel && menuOverlay) {
 function closeMenu() {
 
     if (menuPanel) {
+
         menuPanel.classList.remove('show');
+
     }
 
     if (menuOverlay) {
+
         menuOverlay.classList.remove('show');
+
     }
 
     document.body.style.overflow = '';
@@ -2816,7 +1860,7 @@ function closeMenu() {
 }
 
 
-// Close X
+// CLOSE BUTTON
 
 if (menuClose) {
 
@@ -2828,7 +1872,7 @@ if (menuClose) {
 }
 
 
-// Close when clicking outside
+// CLICK OUTSIDE
 
 if (menuOverlay) {
 
@@ -2840,24 +1884,28 @@ if (menuOverlay) {
 }
 
 
-// ================= ESC KEY =================
+// ESC
 
 document.addEventListener(
     'keydown',
     (e) => {
 
         if (e.key === 'Escape') {
+
             closeMenu();
+
         }
 
     }
 );
 
 
-// ================= CONTACT =================
+// ================= CONTACT FROM MENU =================
 
 const contactMenuBtn =
-    document.getElementById('contactMenuBtn');
+    document.getElementById(
+        'contactMenuBtn'
+    );
 
 if (contactMenuBtn) {
 
@@ -2867,11 +1915,16 @@ if (contactMenuBtn) {
 
             closeMenu();
 
-            document
-                .getElementById('CONTACT')
-                ?.scrollIntoView({
+            const contactSection =
+                document.getElementById('CONTACT');
+
+            if (contactSection) {
+
+                contactSection.scrollIntoView({
                     behavior: 'smooth'
                 });
+
+            }
 
         }
     );
@@ -2882,26 +1935,35 @@ if (contactMenuBtn) {
 // ================= THEME =================
 
 const themeSwitch =
-    document.getElementById('themeSwitch');
+    document.getElementById(
+        'themeSwitch'
+    );
 
 const themeText =
-    document.getElementById('themeText');
+    document.getElementById(
+        'themeText'
+    );
+
 
 const savedTheme =
     localStorage.getItem('voltTheme');
 
+
 if (savedTheme === 'light') {
 
-    document.body.classList.add('light-mode');
+    document.body.classList.add(
+        'light-mode'
+    );
 
     if (themeText) {
-        themeText.textContent = 'Light Mode';
+
+        themeText.textContent =
+            'Light Mode';
+
     }
 
 }
 
-
-// Change Theme
 
 if (themeSwitch) {
 
@@ -2918,6 +1980,7 @@ if (themeSwitch) {
                     'light-mode'
                 );
 
+
             if (isLight) {
 
                 localStorage.setItem(
@@ -2926,8 +1989,10 @@ if (themeSwitch) {
                 );
 
                 if (themeText) {
+
                     themeText.textContent =
                         'Light Mode';
+
                 }
 
             } else {
@@ -2938,8 +2003,10 @@ if (themeSwitch) {
                 );
 
                 if (themeText) {
+
                     themeText.textContent =
                         'Dark Mode';
+
                 }
 
             }
@@ -2953,16 +2020,25 @@ if (themeSwitch) {
 // ================= REVIEWS =================
 
 const reviewsMenuBtn =
-    document.getElementById('reviewsMenuBtn');
+    document.getElementById(
+        'reviewsMenuBtn'
+    );
 
 const reviewsOverlay =
-    document.getElementById('reviewsOverlay');
+    document.getElementById(
+        'reviewsOverlay'
+    );
 
 const reviewsClose =
-    document.getElementById('reviewsClose');
+    document.getElementById(
+        'reviewsClose'
+    );
 
 
-if (reviewsMenuBtn && reviewsOverlay) {
+if (
+    reviewsMenuBtn &&
+    reviewsOverlay
+) {
 
     reviewsMenuBtn.addEventListener(
         'click',
@@ -2980,7 +2056,10 @@ if (reviewsMenuBtn && reviewsOverlay) {
 }
 
 
-if (reviewsClose && reviewsOverlay) {
+if (
+    reviewsClose &&
+    reviewsOverlay
+) {
 
     reviewsClose.addEventListener(
         'click',
@@ -3002,7 +2081,9 @@ if (reviewsOverlay) {
         'click',
         (e) => {
 
-            if (e.target === reviewsOverlay) {
+            if (
+                e.target === reviewsOverlay
+            ) {
 
                 reviewsOverlay.classList.remove(
                     'show'
@@ -3019,7 +2100,9 @@ if (reviewsOverlay) {
 // ================= SETTINGS =================
 
 const settingsMenuBtn =
-    document.getElementById('settingsMenuBtn');
+    document.getElementById(
+        'settingsMenuBtn'
+    );
 
 if (settingsMenuBtn) {
 
@@ -3035,4 +2118,395 @@ if (settingsMenuBtn) {
     );
 
 }
+
+
+// ================= STORE FILTER =================
+
+const storeLinks =
+    document.querySelectorAll(
+        '.nav-store a[data-filter]'
+    );
+
+const storeCards =
+    document.querySelectorAll(
+        '.card-store[data-category]'
+    );
+
+
+if (
+    storeLinks.length &&
+    storeCards.length
+) {
+
+    storeLinks.forEach(
+        (link) => {
+
+            link.addEventListener(
+                'click',
+                (e) => {
+
+                    e.preventDefault();
+
+                    const filter =
+                        link.dataset.filter;
+
+
+                    storeLinks.forEach(
+                        (item) => {
+
+                            item.parentElement
+                                .classList.remove(
+                                    'active'
+                                );
+
+                        }
+                    );
+
+
+                    link.parentElement
+                        .classList.add(
+                            'active'
+                        );
+
+
+                    storeCards.forEach(
+                        (card) => {
+
+                            const category =
+                                card.dataset.category;
+
+
+                            if (
+                                filter === 'all' ||
+                                category === filter
+                            ) {
+
+                                card.style.display =
+                                    '';
+
+                            } else {
+
+                                card.style.display =
+                                    'none';
+
+                            }
+
+                        }
+                    );
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+// ================= PROGRAM DETAILS =================
+
+const programCards =
+    document.querySelectorAll(
+        '.card-prog'
+    );
+
+
+if (programCards.length) {
+
+    const programOverlay =
+        document.createElement('div');
+
+    programOverlay.className =
+        'program-details-overlay';
+
+
+    programOverlay.innerHTML = `
+
+        <div class="program-details-modal">
+
+            <button
+                class="program-details-close"
+                type="button"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="program-details-content">
+
+                <div class="program-details-icon">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+
+                <h2 class="program-details-title">
+                    Program Details
+                </h2>
+
+                <p class="program-details-text">
+                    Train harder. Move better. Become stronger.
+                </p>
+
+                <div class="program-details-info">
+
+                    <div>
+                        <i class="fa-solid fa-dumbbell"></i>
+                        <span>Professional Training</span>
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>Progress Tracking</span>
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>Performance Focused</span>
+                    </div>
+
+                </div>
+
+                <button
+                    class="program-details-action"
+                    type="button"
+                >
+                    GET STARTED
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    document.body.appendChild(
+        programOverlay
+    );
+
+
+    const programClose =
+        programOverlay.querySelector(
+            '.program-details-close'
+        );
+
+    const programAction =
+        programOverlay.querySelector(
+            '.program-details-action'
+        );
+
+
+    programCards.forEach(
+        (card) => {
+
+            const button =
+                card.querySelector(
+                    '.card-footer button'
+                );
+
+            if (!button) return;
+
+
+            button.addEventListener(
+                'click',
+                () => {
+
+                    const title =
+                        card.querySelector('h3')
+                            ?.textContent ||
+                        'Program Details';
+
+
+                    const description =
+                        card.querySelector('p')
+                            ?.textContent ||
+                        'Train harder. Move better. Become stronger.';
+
+
+                    const modalTitle =
+                        programOverlay.querySelector(
+                            '.program-details-title'
+                        );
+
+                    const modalText =
+                        programOverlay.querySelector(
+                            '.program-details-text'
+                        );
+
+
+                    if (modalTitle) {
+
+                        modalTitle.textContent =
+                            title;
+
+                    }
+
+
+                    if (modalText) {
+
+                        modalText.textContent =
+                            description;
+
+                    }
+
+
+                    programOverlay.classList.add(
+                        'show'
+                    );
+
+                    document.body.style.overflow =
+                        'hidden';
+
+                }
+            );
+
+        }
+    );
+
+
+    function closeProgramDetails() {
+
+        programOverlay.classList.remove(
+            'show'
+        );
+
+        document.body.style.overflow =
+            '';
+
+    }
+
+
+    if (programClose) {
+
+        programClose.addEventListener(
+            'click',
+            closeProgramDetails
+        );
+
+    }
+
+
+    if (programAction) {
+
+        programAction.addEventListener(
+            'click',
+            closeProgramDetails
+        );
+
+    }
+
+
+    programOverlay.addEventListener(
+        'click',
+        (e) => {
+
+            if (
+                e.target === programOverlay
+            ) {
+
+                closeProgramDetails();
+
+            }
+
+        }
+    );
+
+
+    document.addEventListener(
+        'keydown',
+        (e) => {
+
+            if (
+                e.key === 'Escape' &&
+                programOverlay.classList.contains(
+                    'show'
+                )
+            ) {
+
+                closeProgramDetails();
+
+            }
+
+        }
+    );
+
+}
+
+
+// ================= CHOOSE COACH - WHATSAPP =================
+
+document
+    .querySelectorAll('.choose-coach')
+    .forEach(
+        (button) => {
+
+            button.addEventListener(
+                'click',
+                () => {
+
+                    const whatsapp =
+                        button.dataset.whatsapp;
+
+                    const coachName =
+                        button.dataset.coach;
+
+
+                    if (!whatsapp) {
+
+                        return;
+
+                    }
+
+
+                    const message =
+                        encodeURIComponent(
+                            `Hello ${coachName}, I would like to choose you as my coach at VOLT FITNESS.`
+                        );
+
+
+                    window.open(
+                        `https://wa.me/${whatsapp}?text=${message}`,
+                        '_blank'
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+// ================= LOGOUT =================
+
+const logoutButtons =
+    document.querySelectorAll(
+        '.logout-btn'
+    );
+
+
+logoutButtons.forEach(
+    (button) => {
+
+        button.addEventListener(
+            'click',
+            () => {
+
+                localStorage.removeItem(
+                    'user'
+                );
+
+                localStorage.removeItem(
+                    'token'
+                );
+
+                window.location.href =
+                    './index.html';
+
+            }
+        );
+
+    }
+);
+
+
+// ================= END =================
+
 });
