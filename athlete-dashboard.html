@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ATHLETE DASHBOARD — VOLT FITNESS</title>
+
+    <link rel="stylesheet" href="athlete-dashboard.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="fontawesome-free-7.3.1-web/fontawesome-free-7.3.1-web/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="ad-shell">
+
+        <!-- ================= TOPBAR ================= -->
+
+        <header class="ad-topbar">
+
+            <a href="./index.html" class="ad-brand">
+                <i class="fa-solid fa-bolt"></i>
+                <div>
+                    <h2>VOLT.</h2>
+                    <span>ATHLETE PORTAL</span>
+                </div>
+            </a>
+
+            <div class="ad-topbar-user">
+                <div class="ad-avatar" id="adAvatar">A</div>
+                <div>
+                    <strong id="adName">Athlete</strong>
+                    <span id="adEmail">athlete@voltfitness.com</span>
+                </div>
+                <button class="ad-logout" id="adLogoutBtn" title="Logout">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
+            </div>
+
+        </header>
+
+
+        <main class="ad-main">
+
+            <div class="ad-welcome">
+                <span class="ad-eyebrow">
+                    <i class="fa-solid fa-bolt"></i>
+                    PERFORMANCE HUB
+                </span>
+                <h1>Welcome back, <span id="adFirstName">Athlete</span></h1>
+                <p>Here's where your training, membership, and progress live.</p>
+            </div>
+
+
+            <div class="ad-grid">
+
+                <!-- ================= MEMBERSHIP CARD ================= -->
+
+                <section class="ad-card ad-membership-card" id="membershipCard">
+
+                    <span class="ad-card-label">MY MEMBERSHIP</span>
+
+                    <div id="membershipContent" class="ad-loading">
+                        Loading membership…
+                    </div>
+
+                </section>
+
+
+                <!-- ================= PROFILE CARD ================= -->
+
+                <section class="ad-card">
+
+                    <section class="ad-card">
+
+    <span class="ad-card-label">MY PROFILE</span>
+
+    <div class="ad-profile-row">
+        <i class="fa-regular fa-user"></i>
+        <div>
+            <strong>Name</strong>
+            <span id="profileName">—</span>
+        </div>
+    </div>
+
+                    <span class="ad-card-label">MY PROFILE</span>
+
+                    <div class="ad-profile-row">
+                        <i class="fa-regular fa-user"></i>
+                        <div>
+                            <strong>Name</strong>
+                            <span id="profileName">—</span>
+                        </div>
+                    </div>
+
+                    <div class="ad-profile-row">
+                        <i class="fa-regular fa-envelope"></i>
+                        <div>
+                            <strong>Email</strong>
+                            <span id="profileEmail">—</span>
+                        </div>
+                    </div>
+
+                    <div class="ad-profile-row">
+                        <i class="fa-regular fa-calendar"></i>
+                        <div>
+                            <strong>Athlete since</strong>
+                            <span id="profileJoined">—</span>
+                        </div>
+                    </div>
+
+                        <div class="ad-profile-row">
+        <i class="fa-solid fa-phone"></i>
+        <div>
+            <strong>Phone</strong>
+            <span id="profilePhone">—</span>
+            <button type="button" id="editPhoneBtn" class="ad-mini-btn">Edit</button>
+        </div>
+    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- ================= BOOKINGS / PROGRESS ================= -->
+
+            <section class="ad-bookings">
+
+                <div class="ad-section-head">
+                    <span class="ad-card-label">MY SESSIONS &amp; PROGRESS</span>
+                </div>
+
+                <div class="ad-table-wrap">
+                    <table class="ad-table">
+                        <thead>
+                            <tr>
+                                <th>Program</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookingsTableBody">
+                            <tr><td colspan="4" class="ad-loading-row">Loading sessions…</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="athlete-dashboard.js"></script>
+
+</body>
+
+</html>

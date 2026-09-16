@@ -616,6 +616,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const userInitial =
         document.getElementById('userInitial');
 
+            const userIconImg =
+        document.getElementById('userIconImg');
+
+    const profileAvatarImg =
+        document.getElementById('profileAvatarImg');
+
+    const navAvatarInput =
+        document.getElementById('navAvatarInput');
+
     const profileAvatar =
         document.getElementById('profileAvatar');
 
@@ -664,6 +673,22 @@ document.addEventListener('DOMContentLoaded', () => {
                             firstLetter;
                     }
 
+                      if (user.avatar) {
+
+                    if (userIconImg) {
+                        userIconImg.src = user.avatar;
+                        userIconImg.style.display = 'block';
+                        if (userInitial) userInitial.style.display = 'none';
+                    }
+
+                    if (profileAvatarImg) {
+                        profileAvatarImg.src = user.avatar;
+                        profileAvatarImg.style.display = 'block';
+                        const icon = document.getElementById('profileAvatarIcon');
+                        if (icon) icon.style.display = 'none';
+                    }
+
+                }
 
                     if (profileAvatar) {
                         profileAvatar.textContent =
@@ -697,7 +722,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         }
 
-        else {
+                else {
 
             if (userInitial) {
 
@@ -706,8 +731,122 @@ document.addEventListener('DOMContentLoaded', () => {
 
             }
 
+            if (profileAvatar) {
+
+                profileAvatar.innerHTML =
+                    '<i class="fa-solid fa-user"></i>';
+
+            }
+
+            if (profileName) {
+                profileName.textContent = 'Guest';
+            }
+
+            if (profileEmail) {
+                profileEmail.textContent = '';
+            }
+
         }
 
+
+        const myProfileBtn =
+            document.getElementById('myProfileBtn');
+
+        if (myProfileBtn) {
+
+            myProfileBtn.addEventListener(
+                'click',
+                () => {
+
+                    if (savedUser && token) {
+
+                        window.location.href =
+                            './athlete-dashboard.html';
+
+                    } else {
+
+                        window.location.href =
+                            './login.html';
+
+                    }
+
+                }
+            );
+
+        }
+
+                if (profileAvatar && navAvatarInput && token) {
+
+            profileAvatar.addEventListener('click', (e) => {
+
+                e.stopPropagation();
+                navAvatarInput.click();
+
+            });
+
+            navAvatarInput.addEventListener('change', async () => {
+
+                const file = navAvatarInput.files[0];
+                if (!file) return;
+
+                const formData = new FormData();
+                formData.append('avatar', file);
+
+                try {
+
+                    const response = await fetch(
+                        'http://127.0.0.1:8000/api/athlete/profile',
+                        {
+                            method: 'POST',
+                            headers: { 'Authorization': `Bearer ${token}` },
+                            body: formData,
+                        }
+                    );
+
+                    const data = await response.json().catch(() => null);
+
+                    if (response.ok && data && data.avatar) {
+
+                        if (userIconImg) {
+                            userIconImg.src = data.avatar;
+                            userIconImg.style.display = 'block';
+                            if (userInitial) userInitial.style.display = 'none';
+                        }
+
+                        if (profileAvatarImg) {
+                            profileAvatarImg.src = data.avatar;
+                            profileAvatarImg.style.display = 'block';
+                            const icon = document.getElementById('profileAvatarIcon');
+                            if (icon) icon.style.display = 'none';
+                        }
+
+                        const updatedUser = JSON.parse(
+                            localStorage.getItem('user') || '{}'
+                        );
+
+                        updatedUser.avatar = data.avatar;
+
+                        localStorage.setItem(
+                            'user',
+                            JSON.stringify(updatedUser)
+                        );
+
+                    } else {
+
+                        alert(data?.message || 'Could not upload photo.');
+
+                    }
+
+                } catch (error) {
+
+                    console.error(error);
+                    alert('Cannot connect to server.');
+
+                }
+
+            });
+
+        }
 
         userIcon.addEventListener(
             'click',
@@ -767,7 +906,8 @@ document.addEventListener('DOMContentLoaded', () => {
     ========================================================= */
 
     let selectedMembership = null;
-
+let deliveryInfo = null;
+let checkoutType = null; // 'membership' or 'cart'
 
     /* =========================================================
        PAYMENT CSS
@@ -1140,7 +1280,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 };
 
-
+                checkoutType = 'membership';
                 showPaymentStart();
 
             }
@@ -1157,6 +1297,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         demoPaymentContent.innerHTML = `
 
+        function closeDemoPayment() {
+    demoOverlay.classList.remove('show');
+    document.body.style.overflow = '';
+}
+
+if (demoClose) {
+    demoClose.addEventListener('click', closeDemoPayment);
+}
             <div class="demo-payment-logo">
                 <i class="fa-solid fa-bolt"></i>
                 VOLT FITNESS
@@ -1497,54 +1645,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function showPaymentSuccess() {
 
-        demoPaymentContent.innerHTML = `
+    if (checkoutType === 'cart') {
 
-            <div class="payment-success">
-
-                <div class="success-icon">
-                    <i class="fa-solid fa-check"></i>
-                </div>
-
-                <h2>
-                    Payment Successful!
-                </h2>
-
-                <p>
-                    Your membership has been
-                    activated successfully.
-                </p>
-
-                <div class="success-plan">
-                    ${selectedMembership?.name || 'Membership'}
-                </div>
-
-                <small class="demo-note">
-                    DEMO PAYMENT — No real money was charged.
-                </small>
-
-                <button
-                    type="button"
-                    class="demo-pay-btn"
-                    id="finishPayment"
-                >
-                    DONE
-                </button>
-
-            </div>
-
-        `;
-
-
-        document
-            .getElementById('finishPayment')
-            .addEventListener(
-                'click',
-                closeDemoPayment
-            );
+        closeDemoPayment();
+        showReceipt();
+        return;
 
     }
 
+    demoPaymentContent.innerHTML = `
 
+        <div class="payment-success">
+
+            <div class="success-icon">
+                <i class="fa-solid fa-check"></i>
+            </div>
+
+            <h2>Payment Successful!</h2>
+
+            <p>Your membership has been activated successfully.</p>
+
+            <div class="success-plan">
+                ${selectedMembership?.name || 'Membership'}
+            </div>
+
+            <small class="demo-note">
+                DEMO PAYMENT — No real money was charged.
+            </small>
+
+            <button type="button" class="demo-pay-btn" id="finishPayment">
+                DONE
+            </button>
+
+        </div>
+
+    `;
+
+    document
+        .getElementById('finishPayment')
+        .addEventListener('click', closeDemoPayment);
+
+}
     /* =========================================================
        CARD PAYMENT
     ========================================================= */
@@ -1774,65 +1915,27 @@ document.addEventListener('DOMContentLoaded', () => {
         showPaymentSuccess();
 
     }
-    // ================= MENU PANEL =================
+// ================= MENU PANEL =================
 
-const menuIcon =
-    document.querySelector('.icon-box.menu');
-
-const menuPanel =
-    document.getElementById('menuPanel');
-
-const menuOverlay =
-    document.getElementById('menuOverlay');
-
-const menuClose =
-    document.getElementById('menuClose');
+const menuIcon = document.querySelector('.icon-box.menu');
+const menuPanel = document.getElementById('menuPanel');
+const menuOverlay = document.getElementById('menuOverlay');
+const menuClose = document.getElementById('menuClose');
 
 
-// ================= MENU OPEN =================
+// ================= OPEN MENU =================
 
-if (menuIcon) {
+if (menuIcon && menuPanel && menuOverlay) {
 
-    menuIcon.addEventListener('click', () => {
+    menuIcon.addEventListener('click', (e) => {
 
-        const savedUser =
-            localStorage.getItem('user');
+        e.preventDefault();
+        e.stopPropagation();
 
-        let user = null;
+        menuPanel.classList.add('show');
+        menuOverlay.classList.add('show');
 
-        try {
-
-            user = savedUser
-                ? JSON.parse(savedUser)
-                : null;
-
-        } catch (error) {
-
-            user = null;
-
-        }
-
-
-        // ADMIN
-if (user && user.role === 'admin') {
-
-    window.location.href = 'http://127.0.0.1:8000/dashboard';
-
-    return;
-
-}
-
-
-        // NORMAL USER
-        if (menuPanel && menuOverlay) {
-
-            menuPanel.classList.add('show');
-
-            menuOverlay.classList.add('show');
-
-            document.body.style.overflow = 'hidden';
-
-        }
+        document.body.style.overflow = 'hidden';
 
     });
 
@@ -1844,15 +1947,11 @@ if (user && user.role === 'admin') {
 function closeMenu() {
 
     if (menuPanel) {
-
         menuPanel.classList.remove('show');
-
     }
 
     if (menuOverlay) {
-
         menuOverlay.classList.remove('show');
-
     }
 
     document.body.style.overflow = '';
@@ -1860,74 +1959,74 @@ function closeMenu() {
 }
 
 
-// CLOSE BUTTON
+// ================= CLOSE BUTTON =================
 
 if (menuClose) {
 
-    menuClose.addEventListener(
-        'click',
-        closeMenu
-    );
+    menuClose.addEventListener('click', (e) => {
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        closeMenu();
+
+    });
 
 }
 
 
-// CLICK OUTSIDE
+// ================= CLICK OVERLAY =================
 
 if (menuOverlay) {
 
-    menuOverlay.addEventListener(
-        'click',
-        closeMenu
-    );
+    menuOverlay.addEventListener('click', (e) => {
+
+        e.stopPropagation();
+
+        closeMenu();
+
+    });
 
 }
 
 
-// ESC
+// ================= ESC =================
 
-document.addEventListener(
-    'keydown',
-    (e) => {
+document.addEventListener('keydown', (e) => {
 
-        if (e.key === 'Escape') {
+    if (e.key === 'Escape') {
 
-            closeMenu();
-
-        }
+        closeMenu();
 
     }
-);
+
+});
 
 
 // ================= CONTACT FROM MENU =================
 
 const contactMenuBtn =
-    document.getElementById(
-        'contactMenuBtn'
-    );
+    document.getElementById('contactMenuBtn');
 
 if (contactMenuBtn) {
 
-    contactMenuBtn.addEventListener(
-        'click',
-        () => {
+    contactMenuBtn.addEventListener('click', () => {
 
-            closeMenu();
+        closeMenu();
 
-            const contactSection =
-                document.getElementById('CONTACT');
+        const contactSection =
+            document.getElementById('CONTACT');
 
-            if (contactSection) {
+        if (contactSection) {
 
-                contactSection.scrollIntoView({
-                    behavior: 'smooth'
-                });
-
-            }
+            contactSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
 
         }
-    );
+
+    });
 
 }
 
@@ -1935,31 +2034,26 @@ if (contactMenuBtn) {
 // ================= THEME =================
 
 const themeSwitch =
-    document.getElementById(
-        'themeSwitch'
-    );
+    document.getElementById('themeSwitch');
 
 const themeText =
-    document.getElementById(
-        'themeText'
-    );
-
+    document.getElementById('themeText');
 
 const savedTheme =
     localStorage.getItem('voltTheme');
 
-
 if (savedTheme === 'light') {
 
-    document.body.classList.add(
-        'light-mode'
-    );
+    document.body.classList.add('light-mode');
 
     if (themeText) {
+        themeText.textContent = 'Light Mode';
+    }
 
-        themeText.textContent =
-            'Light Mode';
+} else {
 
+    if (themeText) {
+        themeText.textContent = 'Dark Mode';
     }
 
 }
@@ -1967,52 +2061,41 @@ if (savedTheme === 'light') {
 
 if (themeSwitch) {
 
-    themeSwitch.addEventListener(
-        'click',
-        () => {
+    themeSwitch.addEventListener('click', (e) => {
 
-            document.body.classList.toggle(
-                'light-mode'
+        e.preventDefault();
+        e.stopPropagation();
+
+        document.body.classList.toggle('light-mode');
+
+        const isLight =
+            document.body.classList.contains('light-mode');
+
+        if (isLight) {
+
+            localStorage.setItem(
+                'voltTheme',
+                'light'
             );
 
-            const isLight =
-                document.body.classList.contains(
-                    'light-mode'
-                );
+            if (themeText) {
+                themeText.textContent = 'Light Mode';
+            }
 
+        } else {
 
-            if (isLight) {
+            localStorage.setItem(
+                'voltTheme',
+                'dark'
+            );
 
-                localStorage.setItem(
-                    'voltTheme',
-                    'light'
-                );
-
-                if (themeText) {
-
-                    themeText.textContent =
-                        'Light Mode';
-
-                }
-
-            } else {
-
-                localStorage.setItem(
-                    'voltTheme',
-                    'dark'
-                );
-
-                if (themeText) {
-
-                    themeText.textContent =
-                        'Dark Mode';
-
-                }
-
+            if (themeText) {
+                themeText.textContent = 'Dark Mode';
             }
 
         }
-    );
+
+    });
 
 }
 
@@ -2020,415 +2103,203 @@ if (themeSwitch) {
 // ================= REVIEWS =================
 
 const reviewsMenuBtn =
-    document.getElementById(
-        'reviewsMenuBtn'
-    );
+    document.getElementById('reviewsMenuBtn');
 
 const reviewsOverlay =
-    document.getElementById(
-        'reviewsOverlay'
-    );
+    document.getElementById('reviewsOverlay');
 
 const reviewsClose =
-    document.getElementById(
-        'reviewsClose'
-    );
+    document.getElementById('reviewsClose');
 
 
-if (
-    reviewsMenuBtn &&
-    reviewsOverlay
-) {
+if (reviewsMenuBtn && reviewsOverlay) {
 
-    reviewsMenuBtn.addEventListener(
-        'click',
-        () => {
+    reviewsMenuBtn.addEventListener('click', () => {
 
-            closeMenu();
+        closeMenu();
 
-            reviewsOverlay.classList.add(
-                'show'
-            );
+        reviewsOverlay.classList.add('show');
 
-        }
-    );
+        document.body.style.overflow = 'hidden';
+
+        loadReviews();
+
+    });
 
 }
 
 
-if (
-    reviewsClose &&
-    reviewsOverlay
-) {
+if (reviewsClose && reviewsOverlay) {
 
-    reviewsClose.addEventListener(
-        'click',
-        () => {
+    reviewsClose.addEventListener('click', () => {
 
-            reviewsOverlay.classList.remove(
-                'show'
-            );
+        reviewsOverlay.classList.remove('show');
 
-        }
-    );
+        document.body.style.overflow = '';
+
+    });
 
 }
 
 
 if (reviewsOverlay) {
 
-    reviewsOverlay.addEventListener(
-        'click',
-        (e) => {
+    reviewsOverlay.addEventListener('click', (e) => {
 
-            if (
-                e.target === reviewsOverlay
-            ) {
+        if (e.target === reviewsOverlay) {
 
-                reviewsOverlay.classList.remove(
-                    'show'
-                );
+            reviewsOverlay.classList.remove('show');
 
-            }
+            document.body.style.overflow = '';
 
         }
-    );
+
+    });
 
 }
 
 
 // ================= SETTINGS =================
 
-const settingsMenuBtn =
-    document.getElementById(
-        'settingsMenuBtn'
-    );
+const settingsMenuBtn = document.getElementById('settingsMenuBtn');
+const settingsOverlay = document.getElementById('settingsOverlay');
+const settingsClose = document.getElementById('settingsClose');
 
-if (settingsMenuBtn) {
+const langSwitch = document.getElementById('langSwitch');
+const notifSwitch = document.getElementById('notifSwitch');
+const soundSwitch = document.getElementById('soundSwitch');
+const emailSwitch = document.getElementById('emailSwitch');
 
-    settingsMenuBtn.addEventListener(
-        'click',
-        () => {
+const defaultSettings = {
+    lang: 'en',
+    notifications: false,
+    sound: true,
+    email: false
+};
 
-            alert(
-                'Settings panel will be available soon.'
-            );
+let voltSettings =
+    JSON.parse(localStorage.getItem('voltSettings')) || defaultSettings;
 
-        }
-    );
+function applySettingsUI() {
 
-}
+    langSwitch.classList.toggle('active', voltSettings.lang === 'ar');
+    notifSwitch.classList.toggle('active', voltSettings.notifications);
+    soundSwitch.classList.toggle('active', voltSettings.sound);
+    emailSwitch.classList.toggle('active', voltSettings.email);
 
-
-// ================= STORE FILTER =================
-
-const storeLinks =
-    document.querySelectorAll(
-        '.nav-store a[data-filter]'
-    );
-
-const storeCards =
-    document.querySelectorAll(
-        '.card-store[data-category]'
-    );
-
-
-if (
-    storeLinks.length &&
-    storeCards.length
-) {
-
-    storeLinks.forEach(
-        (link) => {
-
-            link.addEventListener(
-                'click',
-                (e) => {
-
-                    e.preventDefault();
-
-                    const filter =
-                        link.dataset.filter;
-
-
-                    storeLinks.forEach(
-                        (item) => {
-
-                            item.parentElement
-                                .classList.remove(
-                                    'active'
-                                );
-
-                        }
-                    );
-
-
-                    link.parentElement
-                        .classList.add(
-                            'active'
-                        );
-
-
-                    storeCards.forEach(
-                        (card) => {
-
-                            const category =
-                                card.dataset.category;
-
-
-                            if (
-                                filter === 'all' ||
-                                category === filter
-                            ) {
-
-                                card.style.display =
-                                    '';
-
-                            } else {
-
-                                card.style.display =
-                                    'none';
-
-                            }
-
-                        }
-                    );
-
-                }
-            );
-
-        }
+    document.documentElement.setAttribute(
+        'dir',
+        voltSettings.lang === 'ar' ? 'rtl' : 'ltr'
     );
 
 }
 
+function saveSettings() {
+    localStorage.setItem('voltSettings', JSON.stringify(voltSettings));
+}
 
-// ================= PROGRAM DETAILS =================
+if (settingsMenuBtn && settingsOverlay) {
 
-const programCards =
-    document.querySelectorAll(
-        '.card-prog'
-    );
+    settingsMenuBtn.addEventListener('click', () => {
 
+        closeMenu();
+        applySettingsUI();
 
-if (programCards.length) {
+        settingsOverlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
 
-    const programOverlay =
-        document.createElement('div');
-
-    programOverlay.className =
-        'program-details-overlay';
-
-
-    programOverlay.innerHTML = `
-
-        <div class="program-details-modal">
-
-            <button
-                class="program-details-close"
-                type="button"
-            >
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-
-            <div class="program-details-content">
-
-                <div class="program-details-icon">
-                    <i class="fa-solid fa-bolt"></i>
-                </div>
-
-                <h2 class="program-details-title">
-                    Program Details
-                </h2>
-
-                <p class="program-details-text">
-                    Train harder. Move better. Become stronger.
-                </p>
-
-                <div class="program-details-info">
-
-                    <div>
-                        <i class="fa-solid fa-dumbbell"></i>
-                        <span>Professional Training</span>
-                    </div>
-
-                    <div>
-                        <i class="fa-solid fa-chart-line"></i>
-                        <span>Progress Tracking</span>
-                    </div>
-
-                    <div>
-                        <i class="fa-solid fa-bolt"></i>
-                        <span>Performance Focused</span>
-                    </div>
-
-                </div>
-
-                <button
-                    class="program-details-action"
-                    type="button"
-                >
-                    GET STARTED
-                </button>
-
-            </div>
-
-        </div>
-
-    `;
-
-
-    document.body.appendChild(
-        programOverlay
-    );
-
-
-    const programClose =
-        programOverlay.querySelector(
-            '.program-details-close'
-        );
-
-    const programAction =
-        programOverlay.querySelector(
-            '.program-details-action'
-        );
-
-
-    programCards.forEach(
-        (card) => {
-
-            const button =
-                card.querySelector(
-                    '.card-footer button'
-                );
-
-            if (!button) return;
-
-
-            button.addEventListener(
-                'click',
-                () => {
-
-                    const title =
-                        card.querySelector('h3')
-                            ?.textContent ||
-                        'Program Details';
-
-
-                    const description =
-                        card.querySelector('p')
-                            ?.textContent ||
-                        'Train harder. Move better. Become stronger.';
-
-
-                    const modalTitle =
-                        programOverlay.querySelector(
-                            '.program-details-title'
-                        );
-
-                    const modalText =
-                        programOverlay.querySelector(
-                            '.program-details-text'
-                        );
-
-
-                    if (modalTitle) {
-
-                        modalTitle.textContent =
-                            title;
-
-                    }
-
-
-                    if (modalText) {
-
-                        modalText.textContent =
-                            description;
-
-                    }
-
-
-                    programOverlay.classList.add(
-                        'show'
-                    );
-
-                    document.body.style.overflow =
-                        'hidden';
-
-                }
-            );
-
-        }
-    );
-
-
-    function closeProgramDetails() {
-
-        programOverlay.classList.remove(
-            'show'
-        );
-
-        document.body.style.overflow =
-            '';
-
-    }
-
-
-    if (programClose) {
-
-        programClose.addEventListener(
-            'click',
-            closeProgramDetails
-        );
-
-    }
-
-
-    if (programAction) {
-
-        programAction.addEventListener(
-            'click',
-            closeProgramDetails
-        );
-
-    }
-
-
-    programOverlay.addEventListener(
-        'click',
-        (e) => {
-
-            if (
-                e.target === programOverlay
-            ) {
-
-                closeProgramDetails();
-
-            }
-
-        }
-    );
-
-
-    document.addEventListener(
-        'keydown',
-        (e) => {
-
-            if (
-                e.key === 'Escape' &&
-                programOverlay.classList.contains(
-                    'show'
-                )
-            ) {
-
-                closeProgramDetails();
-
-            }
-
-        }
-    );
+    });
 
 }
+
+if (settingsClose && settingsOverlay) {
+
+    settingsClose.addEventListener('click', () => {
+
+        settingsOverlay.classList.remove('show');
+        document.body.style.overflow = '';
+
+    });
+
+}
+
+if (settingsOverlay) {
+
+    settingsOverlay.addEventListener('click', (e) => {
+
+        if (e.target === settingsOverlay) {
+
+            settingsOverlay.classList.remove('show');
+            document.body.style.overflow = '';
+
+        }
+
+    });
+
+}
+
+if (langSwitch) {
+
+    langSwitch.addEventListener('click', () => {
+
+        voltSettings.lang = voltSettings.lang === 'ar' ? 'en' : 'ar';
+
+        applySettingsUI();
+        saveSettings();
+
+    });
+
+}
+
+if (notifSwitch) {
+
+    notifSwitch.addEventListener('click', async () => {
+
+        if (!voltSettings.notifications && 'Notification' in window) {
+
+            const permission = await Notification.requestPermission();
+
+            if (permission !== 'granted') return;
+
+        }
+
+        voltSettings.notifications = !voltSettings.notifications;
+
+        applySettingsUI();
+        saveSettings();
+
+    });
+
+}
+
+if (soundSwitch) {
+
+    soundSwitch.addEventListener('click', () => {
+
+        voltSettings.sound = !voltSettings.sound;
+
+        applySettingsUI();
+        saveSettings();
+
+    });
+
+}
+
+if (emailSwitch) {
+
+    emailSwitch.addEventListener('click', () => {
+
+        voltSettings.email = !voltSettings.email;
+
+        applySettingsUI();
+        saveSettings();
+
+    });
+
+}
+
+applySettingsUI();
+
 
 
 // ================= CHOOSE COACH - WHATSAPP =================
@@ -2473,6 +2344,149 @@ document
         }
     );
 
+    // ================= CONTACT API =================
+
+const contactForm = document.getElementById('contactForm');
+
+if (contactForm) {
+
+    contactForm.addEventListener('submit', async (e) => {
+
+        e.preventDefault();
+
+        const nameInput =
+            document.getElementById('contactName');
+
+        const emailInput =
+            document.getElementById('contactEmail');
+
+        const messageInput =
+            document.getElementById('contactMessage');
+
+        const submitButton =
+            contactForm.querySelector('.contact-submit');
+
+
+        const name =
+            nameInput ? nameInput.value.trim() : '';
+
+        const email =
+            emailInput ? emailInput.value.trim() : '';
+
+        const message =
+            messageInput ? messageInput.value.trim() : '';
+
+
+        if (!name || !email || !message) {
+
+            alert('Please fill in all fields.');
+
+            return;
+
+        }
+
+
+        if (submitButton) {
+
+            submitButton.disabled = true;
+            submitButton.innerHTML =
+                'SENDING... <i class="fa-solid fa-spinner fa-spin"></i>';
+
+        }
+
+
+        try {
+
+            const response =
+                await fetch(
+                    'http://127.0.0.1:8000/api/contact',
+                    {
+                        method: 'POST',
+
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+
+                        body: JSON.stringify({
+                            name: name,
+                            email: email,
+                            message: message
+                        })
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (response.ok) {
+
+                alert(
+                    data.message ||
+                    'Your message has been sent successfully.'
+                );
+
+                contactForm.reset();
+
+                return;
+
+            }
+
+
+            let errorMessage =
+                data.message ||
+                'Failed to send your message.';
+
+
+            if (data.errors) {
+
+                const firstError =
+                    Object.values(data.errors)[0];
+
+                if (Array.isArray(firstError)) {
+
+                    errorMessage = firstError[0];
+
+                }
+
+            }
+
+
+            alert(errorMessage);
+
+        }
+
+        catch (error) {
+
+            console.error(
+                'Contact Error:',
+                error
+            );
+
+            alert(
+                'Cannot connect to Laravel server.'
+            );
+
+        }
+
+        finally {
+
+            if (submitButton) {
+
+                submitButton.disabled = false;
+
+                submitButton.innerHTML =
+                    'SEND MESSAGE <i class="fa-solid fa-arrow-right"></i>';
+
+            }
+
+        }
+
+    });
+
+}
 
 // ================= LOGOUT =================
 
@@ -2506,7 +2520,754 @@ logoutButtons.forEach(
     }
 );
 
+// ===== PASSWORD SHOW/HIDE TOGGLE =====
+document.addEventListener('DOMContentLoaded', () => {
+    const eyeIcons = document.querySelectorAll('.password-eye');
 
-// ================= END =================
+    eyeIcons.forEach((eye) => {
+        const box = eye.closest('.password-box');
+        const input = box ? box.querySelector('input') : null;
 
+        if (!input) return;
+
+        eye.addEventListener('click', () => {
+            const isHidden = input.type === 'password';
+
+            input.type = isHidden ? 'text' : 'password';
+
+            eye.classList.toggle('fa-eye', !isHidden);
+            eye.classList.toggle('fa-eye-slash', isHidden);
+        });
+    });
+});
+
+// ===== GOOGLE SIGN IN =====
+async function handleGoogleResponse(response) {
+
+    try {
+
+        const res = await fetch(
+            'http://127.0.0.1:8000/api/auth/google',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    credential: response.credential
+                })
+            }
+        );
+
+        const data = await res.json();
+
+        if (res.ok) {
+
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('user', JSON.stringify(data.user));
+
+            window.location.href = './index.html';
+
+            return;
+
+        }
+
+        alert(data.message || 'فشل تسجيل الدخول بجوجل');
+
+    } catch (error) {
+
+        console.error(error);
+        alert('Cannot connect to Laravel server');
+
+    }
+
+}
+
+// هنا كان الجزء الناقص اللي بيربط زرار "Continue with Google"
+// بمكتبة جوجل ويشغّل handleGoogleResponse فعليًا
+window.addEventListener('load', () => {
+    if (typeof google === 'undefined') return;
+
+    google.accounts.id.initialize({
+        client_id: '846004573058-05lf0u8c39lp72tbngc8ld3k7dp9uvtb.apps.googleusercontent.com',
+        callback: handleGoogleResponse
+    });
+
+    const googleBtn = document.querySelector('.google-login, .google-signup');
+    if (googleBtn) {
+        googleBtn.addEventListener('click', () => {
+            google.accounts.id.prompt(); // بيفتح نافذة اختيار الحساب
+        });
+    }
+});
+
+// ================= REVIEWS API =================
+
+const reviewsList = document.getElementById('reviewsList');
+const submitReviewBtn = document.getElementById('submitReviewBtn');
+const reviewInput = document.getElementById('reviewInput');
+const reviewMessage = document.getElementById('reviewMessage');
+
+const API_URL = 'http://127.0.0.1:8000/api';
+
+
+// ================= LOAD REVIEWS =================
+
+async function loadReviews() {
+
+    if (!reviewsList) return;
+
+    reviewsList.innerHTML =
+        '<p class="reviews-loading">Loading reviews...</p>';
+
+    try {
+
+        const response = await fetch(`${API_URL}/reviews`);
+
+        if (!response.ok) {
+            throw new Error('Failed to load reviews');
+        }
+
+        const data = await response.json();
+
+        if (!data.reviews || data.reviews.length === 0) {
+
+            reviewsList.innerHTML =
+                '<p class="reviews-loading">No reviews yet. Be the first!</p>';
+
+            return;
+        }
+
+        reviewsList.innerHTML = '';
+
+        data.reviews.forEach(review => {
+
+            const userName = review.user?.name || 'VOLT Member';
+
+            const initial =
+                userName.charAt(0).toUpperCase();
+
+            const date = review.created_at
+                ? new Date(review.created_at).toLocaleDateString()
+                : '';
+
+            const reviewElement = document.createElement('div');
+
+            reviewElement.className = 'review-item';
+
+            reviewElement.innerHTML = `
+                <div class="review-user">
+
+                    <div class="review-avatar">
+                        ${initial}
+                    </div>
+
+                    <div>
+                        <div class="review-user-name">
+                            ${userName}
+                        </div>
+
+                        <div class="review-date">
+                            ${date}
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="review-text">
+                    ${review.review}
+                </div>
+            `;
+
+            reviewsList.appendChild(reviewElement);
+
+        });
+
+    } catch (error) {
+
+        console.error('Reviews Error:', error);
+
+        reviewsList.innerHTML =
+            '<p class="reviews-loading">Unable to load reviews.</p>';
+    }
+}
+
+
+// ================= SUBMIT REVIEW =================
+
+if (submitReviewBtn) {
+
+    submitReviewBtn.addEventListener('click', async () => {
+
+        const reviewText = reviewInput.value.trim();
+
+        if (!reviewText) {
+
+            reviewMessage.textContent =
+                'Please write your review first.';
+
+            return;
+        }
+
+        const token = localStorage.getItem('token');
+
+        if (!token) {
+
+            reviewMessage.textContent =
+                'Please login first to submit a review.';
+
+            return;
+        }
+
+        submitReviewBtn.disabled = true;
+
+        reviewMessage.textContent =
+            'Submitting...';
+
+        try {
+
+            const response = await fetch(`${API_URL}/reviews`, {
+
+                method: 'POST',
+
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+
+                body: JSON.stringify({
+                    review: reviewText
+                })
+
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.message || 'Failed to submit review'
+                );
+            }
+
+            reviewInput.value = '';
+
+            reviewMessage.textContent =
+                'Review added successfully!';
+
+            await loadReviews();
+
+        } catch (error) {
+
+            console.error('Submit Review Error:', error);
+
+            reviewMessage.textContent =
+                error.message || 'Something went wrong.';
+
+        } finally {
+
+            submitReviewBtn.disabled = false;
+        }
+
+    });
+
+}
+
+
+// ================= LOAD WHEN PAGE STARTS =================
+
+loadReviews();
+
+// ================= WISHLIST =================
+
+const WISHLIST_KEY = 'voltWishlist';
+
+function getWishlist() {
+    return JSON.parse(localStorage.getItem(WISHLIST_KEY)) || [];
+}
+
+function saveWishlist(list) {
+    localStorage.setItem(WISHLIST_KEY, JSON.stringify(list));
+}
+
+function renderWishlist() {
+
+    const list = getWishlist();
+    const wishlistList = document.getElementById('wishlistList');
+    const wishlistBadge = document.getElementById('wishlistBadge');
+
+    if (!wishlistList || !wishlistBadge) return;
+
+    if (list.length === 0) {
+
+        wishlistList.innerHTML =
+            '<p class="wishlist-empty">No favorites yet.</p>';
+
+        wishlistBadge.style.display = 'none';
+
+    } else {
+
+        wishlistBadge.textContent = list.length;
+        wishlistBadge.style.display = 'flex';
+
+        wishlistList.innerHTML = list.map((item, index) => `
+
+            <div class="wishlist-item">
+
+                <img src="${item.img}" alt="${item.name}">
+
+                <div>
+                    <strong>${item.name}</strong>
+                    <span>${item.price}</span>
+                </div>
+
+                <button type="button" class="wishlist-remove" data-index="${index}">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+        `).join('');
+
+    }
+
+    // Sync heart icons on the store cards
+    document.querySelectorAll('.card-store').forEach((card) => {
+
+        const name = card.querySelector('h3')?.textContent.trim();
+        const heartIcon = card.querySelector('.icon-box-store i');
+
+        if (!heartIcon || !name) return;
+
+        const isSaved = list.some((item) => item.name === name);
+
+        heartIcon.classList.toggle('fa-regular', !isSaved);
+        heartIcon.classList.toggle('fa-solid', isSaved);
+
+    });
+
+}
+
+document.querySelectorAll('.card-store .icon-box-store').forEach((btn) => {
+
+    btn.addEventListener('click', (e) => {
+
+        e.stopPropagation();
+
+        const card = btn.closest('.card-store');
+        if (!card) return;
+
+        const name = card.querySelector('h3')?.textContent.trim();
+        const price = card.querySelector('.card-footer-store span')?.textContent.trim();
+        const img = card.querySelector('img')?.getAttribute('src');
+
+        if (!name) return;
+
+        const list = getWishlist();
+        const existingIndex = list.findIndex((item) => item.name === name);
+
+        if (existingIndex > -1) {
+
+            list.splice(existingIndex, 1);
+
+        } else {
+
+            list.push({ name, price, img });
+
+        }
+
+        saveWishlist(list);
+        renderWishlist();
+
+    });
+
+});
+
+const wishlistWrapper = document.getElementById('wishlistWrapper');
+const navHeartIcon = document.getElementById('navHeartIcon');
+const wishlistDropdown = document.getElementById('wishlistDropdown');
+
+if (navHeartIcon && wishlistDropdown && wishlistWrapper) {
+
+    navHeartIcon.addEventListener('click', (e) => {
+
+        e.stopPropagation();
+
+        wishlistDropdown.classList.toggle('show');
+
+    });
+
+    document.addEventListener('click', (e) => {
+
+        if (!wishlistWrapper.contains(e.target)) {
+
+            wishlistDropdown.classList.remove('show');
+
+        }
+
+    });
+
+}
+
+if (wishlistDropdown) {
+
+    wishlistDropdown.addEventListener('click', (e) => {
+
+        const removeBtn = e.target.closest('.wishlist-remove');
+
+        if (!removeBtn) return;
+
+        const index = Number(removeBtn.dataset.index);
+
+        const list = getWishlist();
+
+        list.splice(index, 1);
+
+        saveWishlist(list);
+        renderWishlist();
+
+    });
+
+}
+
+renderWishlist();
+// ================= CART SYSTEM =================
+
+const CART_KEY = 'voltCart';
+
+function getCart() {
+    return JSON.parse(localStorage.getItem(CART_KEY)) || [];
+}
+
+function saveCart(cart) {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+}
+
+function getCartTotal(cart) {
+    return cart.reduce((sum, item) => sum + (item.priceValue * item.qty), 0);
+}
+
+function renderCart() {
+
+    const cart = getCart();
+
+    const cartList = document.getElementById('cartList');
+    const cartSummary = document.getElementById('cartSummary');
+    const cartTotalPrice = document.getElementById('cartTotalPrice');
+    const menuCartBadge = document.getElementById('menuCartBadge');
+
+    if (!cartList) return;
+
+    const itemCount = cart.reduce((sum, item) => sum + item.qty, 0);
+
+    if (menuCartBadge) {
+
+        if (itemCount > 0) {
+            menuCartBadge.textContent = itemCount;
+            menuCartBadge.style.display = 'flex';
+        } else {
+            menuCartBadge.style.display = 'none';
+        }
+
+    }
+
+    if (cart.length === 0) {
+
+        cartList.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
+        if (cartSummary) cartSummary.style.display = 'none';
+        return;
+
+    }
+
+    cartList.innerHTML = cart.map((item, index) => `
+
+        <div class="cart-item">
+
+            <img src="${item.img}" alt="${item.name}">
+
+            <div class="cart-item-info">
+                <strong>${item.name}</strong>
+                <span>$${item.priceValue.toFixed(2)}</span>
+            </div>
+
+            <div class="cart-qty">
+                <button type="button" class="cart-decrease" data-index="${index}">-</button>
+                <span>${item.qty}</span>
+                <button type="button" class="cart-increase" data-index="${index}">+</button>
+            </div>
+
+            <button type="button" class="cart-remove" data-index="${index}">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+
+        </div>
+
+    `).join('');
+
+    if (cartSummary) {
+        cartSummary.style.display = 'block';
+        cartTotalPrice.textContent = `$${getCartTotal(cart).toFixed(2)}`;
+    }
+
+}
+
+
+// ---- Add to cart from Store "+ ADD" buttons ----
+
+document.querySelectorAll('.card-store').forEach((card) => {
+
+    const addBtn = card.querySelector('.card-footer-store button');
+
+    if (!addBtn) return;
+
+    addBtn.addEventListener('click', () => {
+
+        const name = card.querySelector('h3')?.textContent.trim();
+        const priceText = card.querySelector('.card-footer-store span')?.textContent.trim() || '$0';
+        const priceValue = parseFloat(priceText.replace(/[^0-9.]/g, '')) || 0;
+        const img = card.querySelector('img')?.getAttribute('src');
+
+        if (!name) return;
+
+        const cart = getCart();
+        const existing = cart.find((item) => item.name === name);
+
+        if (existing) {
+            existing.qty += 1;
+        } else {
+            cart.push({ name, priceValue, img, qty: 1 });
+        }
+
+        saveCart(cart);
+        renderCart();
+
+        addBtn.textContent = 'ADDED ✓';
+        setTimeout(() => { addBtn.textContent = '+ ADD'; }, 1000);
+
+    });
+
+});
+
+
+// ---- Cart quantity / remove handlers ----
+
+const cartListEl = document.getElementById('cartList');
+
+if (cartListEl) {
+
+    cartListEl.addEventListener('click', (e) => {
+
+        const increaseBtn = e.target.closest('.cart-increase');
+        const decreaseBtn = e.target.closest('.cart-decrease');
+        const removeBtn = e.target.closest('.cart-remove');
+
+        const cart = getCart();
+
+        if (increaseBtn) {
+            const index = Number(increaseBtn.dataset.index);
+            cart[index].qty += 1;
+            saveCart(cart);
+            renderCart();
+        }
+
+        if (decreaseBtn) {
+            const index = Number(decreaseBtn.dataset.index);
+            if (cart[index].qty > 1) {
+                cart[index].qty -= 1;
+            } else {
+                cart.splice(index, 1);
+            }
+            saveCart(cart);
+            renderCart();
+        }
+
+        if (removeBtn) {
+            const index = Number(removeBtn.dataset.index);
+            cart.splice(index, 1);
+            saveCart(cart);
+            renderCart();
+        }
+
+    });
+
+}
+
+
+// ---- Open / close cart overlay ----
+
+const cartMenuBtn = document.getElementById('cartMenuBtn');
+const cartOverlay = document.getElementById('cartOverlay');
+const cartClose = document.getElementById('cartClose');
+
+if (cartMenuBtn && cartOverlay) {
+
+    cartMenuBtn.addEventListener('click', () => {
+
+        closeMenu();
+        renderCart();
+
+        cartOverlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
+
+    });
+
+}
+
+if (cartClose && cartOverlay) {
+
+    cartClose.addEventListener('click', () => {
+        cartOverlay.classList.remove('show');
+        document.body.style.overflow = '';
+    });
+
+}
+
+if (cartOverlay) {
+
+    cartOverlay.addEventListener('click', (e) => {
+        if (e.target === cartOverlay) {
+            cartOverlay.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+    });
+
+}
+
+
+// ---- Proceed to checkout -> Delivery form ----
+
+const cartCheckoutBtn = document.getElementById('cartCheckoutBtn');
+const deliveryOverlay = document.getElementById('deliveryOverlay');
+const deliveryClose = document.getElementById('deliveryClose');
+const deliveryForm = document.getElementById('deliveryForm');
+
+if (cartCheckoutBtn && deliveryOverlay) {
+
+    cartCheckoutBtn.addEventListener('click', () => {
+
+        const cart = getCart();
+        if (cart.length === 0) return;
+
+        cartOverlay.classList.remove('show');
+
+        deliveryOverlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
+
+    });
+
+}
+
+if (deliveryClose && deliveryOverlay) {
+
+    deliveryClose.addEventListener('click', () => {
+        deliveryOverlay.classList.remove('show');
+        document.body.style.overflow = '';
+    });
+
+}
+
+if (deliveryForm) {
+
+    deliveryForm.addEventListener('submit', (e) => {
+
+        e.preventDefault();
+
+        const name = document.getElementById('deliveryName').value.trim();
+        const phone = document.getElementById('deliveryPhone').value.trim();
+        const address = document.getElementById('deliveryAddress').value.trim();
+        const note = document.getElementById('deliveryNote').value.trim();
+
+        if (!/^01[0125][0-9]{8}$/.test(phone)) {
+            alert('Please enter a valid Egyptian mobile number.');
+            return;
+        }
+
+        deliveryInfo = { name, phone, address, note };
+
+        const cart = getCart();
+
+        selectedMembership = {
+            name: `VOLT Store Order (${cart.reduce((s, i) => s + i.qty, 0)} items)`,
+            price: `$${getCartTotal(cart).toFixed(2)}`,
+            priceText: ''
+        };
+
+        checkoutType = 'cart';
+
+        deliveryOverlay.classList.remove('show');
+
+        showPaymentStart();
+
+    });
+
+}
+
+
+// ---- Receipt after successful cart payment ----
+
+function showReceipt() {
+
+    const cart = getCart();
+    const total = getCartTotal(cart);
+
+    const receiptBox = document.getElementById('receiptBox');
+    const receiptOverlayEl = document.getElementById('receiptOverlay');
+
+    if (!receiptBox || !receiptOverlayEl || !deliveryInfo) return;
+
+    const itemsHtml = cart.map((item) => `
+        <div class="receipt-row">
+            <span>${item.name} × ${item.qty}</span>
+            <span>$${(item.priceValue * item.qty).toFixed(2)}</span>
+        </div>
+    `).join('');
+
+    receiptBox.innerHTML = `
+
+        <div class="receipt-row"><span>Name</span><span>${deliveryInfo.name}</span></div>
+        <div class="receipt-row"><span>Phone</span><span>${deliveryInfo.phone}</span></div>
+        <div class="receipt-row"><span>Address</span><span>${deliveryInfo.address}</span></div>
+        ${deliveryInfo.note ? `<div class="receipt-row"><span>Note</span><span>${deliveryInfo.note}</span></div>` : ''}
+
+        <div class="receipt-items-title">Order Items</div>
+
+        ${itemsHtml}
+
+        <div class="receipt-row"><span>Total</span><span>$${total.toFixed(2)}</span></div>
+
+    `;
+
+    receiptOverlayEl.classList.add('show');
+    document.body.style.overflow = 'hidden';
+
+    // Clear cart after successful order
+    saveCart([]);
+    renderCart();
+
+}
+
+const receiptClose = document.getElementById('receiptClose');
+const receiptDoneBtn = document.getElementById('receiptDoneBtn');
+const receiptOverlay = document.getElementById('receiptOverlay');
+
+function closeReceipt() {
+    if (receiptOverlay) receiptOverlay.classList.remove('show');
+    document.body.style.overflow = '';
+}
+
+if (receiptClose) receiptClose.addEventListener('click', closeReceipt);
+if (receiptDoneBtn) receiptDoneBtn.addEventListener('click', closeReceipt);
+
+if (receiptOverlay) {
+
+    receiptOverlay.addEventListener('click', (e) => {
+        if (e.target === receiptOverlay) closeReceipt();
+    });
+
+}
+
+
+renderCart();
 });

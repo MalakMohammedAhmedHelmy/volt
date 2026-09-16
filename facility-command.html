@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FACILITY COMMAND — VOLT FITNESS</title>
+
+    <link rel="stylesheet" href="facility-command.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="fontawesome-free-7.3.1-web/fontawesome-free-7.3.1-web/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="fc-shell">
+
+        <!-- ================= SIDEBAR ================= -->
+
+        <aside class="fc-sidebar">
+
+            <div class="fc-brand">
+                <i class="fa-solid fa-bolt"></i>
+
+                <div>
+                    <h2>VOLT.</h2>
+                    <span>FACILITY COMMAND</span>
+                </div>
+            </div>
+
+
+            <nav class="fc-nav">
+
+                <button class="fc-nav-item active" data-section="overview">
+                    <i class="fa-solid fa-gauge-high"></i>
+                    <span>Overview</span>
+                </button>
+
+
+                <button class="fc-nav-item" data-section="athletes">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Athletes</span>
+                </button>
+
+
+                <button
+                    class="fc-nav-item"
+                    data-section="contact-messages"
+                >
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>Contact Messages</span>
+                </button>
+
+
+                <button class="fc-nav-item" data-section="memberships">
+                    <i class="fa-sharp fa-solid fa-award"></i>
+                    <span>Memberships</span>
+                </button>
+
+
+                <button class="fc-nav-item" data-section="programs">
+                    <i class="fa-solid fa-dumbbell"></i>
+                    <span>Programs</span>
+                </button>
+
+
+                <button class="fc-nav-item" data-section="coaches">
+                    <i class="fa-solid fa-medal"></i>
+                    <span>Coaches</span>
+                </button>
+
+            </nav>
+
+
+            <a href="./index.html" class="fc-back-link">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Back to Site</span>
+            </a>
+
+        </aside>
+
+
+        <!-- ================= MAIN ================= -->
+
+        <main class="fc-main">
+
+            <!-- TOP BAR -->
+
+            <header class="fc-topbar">
+
+                <div class="fc-topbar-title">
+
+                    <h1 id="fcSectionTitle">
+                        Overview
+                    </h1>
+
+                    <p id="fcSectionSubtitle">
+                        Live facility telemetry at a glance
+                    </p>
+
+                </div>
+
+
+                <div class="fc-topbar-user">
+
+                    <div
+                        class="fc-avatar"
+                        id="fcAdminInitial"
+                    >
+                        A
+                    </div>
+
+                    <div>
+
+                        <strong id="fcAdminName">
+                            Admin
+                        </strong>
+
+                        <span id="fcAdminEmail">
+                            admin@voltfitness.com
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        class="fc-logout"
+                        id="fcLogoutBtn"
+                        title="Logout"
+                    >
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- ================= OVERVIEW ================= -->
+
+            <section
+                class="fc-section active"
+                id="section-overview"
+            >
+
+                <div class="fc-stats-grid">
+
+                    <div class="fc-stat-card">
+
+                        <span class="fc-stat-label">
+                            TOTAL ATHLETES
+                        </span>
+
+                        <h2 id="statAthletes">
+                            —
+                        </h2>
+
+                        <span class="fc-stat-foot">
+                            <i class="fa-solid fa-arrow-trend-up"></i>
+                            Registered members
+                        </span>
+
+                    </div>
+
+
+                    <div class="fc-stat-card">
+
+                        <span class="fc-stat-label">
+                            ACTIVE MEMBERSHIPS
+                        </span>
+
+                        <h2 id="statMemberships">
+                            —
+                        </h2>
+
+                        <span class="fc-stat-foot">
+                            <i class="fa-solid fa-award"></i>
+                            Currently subscribed
+                        </span>
+
+                    </div>
+
+
+                    <div class="fc-stat-card">
+
+                        <span class="fc-stat-label">
+                            MONTHLY REVENUE
+                        </span>
+
+                        <h2 id="statRevenue">
+                            —
+                        </h2>
+
+                        <span class="fc-stat-foot">
+                            <i class="fa-solid fa-sack-dollar"></i>
+                            From active plans
+                        </span>
+
+                    </div>
+
+
+                    <div class="fc-stat-card">
+
+                        <span class="fc-stat-label">
+                            PROGRAMS &amp; COACHES
+                        </span>
+
+                        <h2 id="statPrograms">
+                            —
+                        </h2>
+
+                        <span class="fc-stat-foot">
+                            <i class="fa-solid fa-dumbbell"></i>
+                            Live on the roster
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="fc-empty-note">
+
+                    <i class="fa-solid fa-circle-info"></i>
+
+                    Use the sidebar to manage athletes,
+                    memberships, programs, and coaches.
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= ATHLETES ================= -->
+
+            <section
+                class="fc-section"
+                id="section-athletes"
+            >
+
+                <div class="fc-table-wrap">
+
+                    <table class="fc-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Joined</th>
+                                <th></th>
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="athletesTableBody">
+
+                            <tr>
+
+                                <td
+                                    colspan="5"
+                                    class="fc-loading"
+                                >
+                                    Loading athletes…
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= CONTACT MESSAGES ================= -->
+
+            <section
+                class="fc-section"
+                id="section-contact-messages-test"
+            >
+
+                <div class="fc-table-wrap">
+
+                    <table class="fc-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Message</th>
+                                <th>Status</th>
+                                <th>Sent</th>
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="contactMessagesTableBody">
+
+                            <tr>
+
+                                <td
+                                    colspan="5"
+                                    class="fc-loading"
+                                >
+                                    Loading messages…
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= MEMBERSHIPS ================= -->
+
+            <section
+                class="fc-section"
+                id="section-memberships"
+            >
+
+                <div class="fc-section-actions">
+
+                    <button
+                        class="fc-btn-primary"
+                        id="addMembershipBtn"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        New Membership
+                    </button>
+
+                </div>
+
+
+                <div class="fc-table-wrap">
+
+                    <table class="fc-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Athlete</th>
+                                <th>Plan</th>
+                                <th>Price</th>
+                                <th>Cycle</th>
+                                <th>Status</th>
+                                <th>Ends</th>
+                                <th></th>
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="membershipsTableBody">
+
+                            <tr>
+
+                                <td
+                                    colspan="7"
+                                    class="fc-loading"
+                                >
+                                    Loading memberships…
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= PROGRAMS ================= -->
+
+            <section
+                class="fc-section"
+                id="section-programs"
+            >
+
+                <div class="fc-section-actions">
+
+                    <button
+                        class="fc-btn-primary"
+                        id="addProgramBtn"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        New Program
+                    </button>
+
+                </div>
+
+
+                <div class="fc-table-wrap">
+
+                    <table class="fc-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Level</th>
+                                <th>Weeks</th>
+                                <th>Coach</th>
+                                <th></th>
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="programsTableBody">
+
+                            <tr>
+
+                                <td
+                                    colspan="6"
+                                    class="fc-loading"
+                                >
+                                    Loading programs…
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= COACHES ================= -->
+
+            <section
+                class="fc-section"
+                id="section-coaches"
+            >
+
+                <div class="fc-section-actions">
+
+                    <button
+                        class="fc-btn-primary"
+                        id="addCoachBtn"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        New Coach
+                    </button>
+
+                </div>
+
+
+                <div class="fc-table-wrap">
+
+                    <table class="fc-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Name</th>
+                                <th>Specialty</th>
+                                <th>WhatsApp</th>
+                                <th></th>
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="coachesTableBody">
+
+                            <tr>
+
+                                <td
+                                    colspan="4"
+                                    class="fc-loading"
+                                >
+                                    Loading coaches…
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- ================= MODAL ================= -->
+
+    <div
+        class="fc-modal-overlay"
+        id="fcModalOverlay"
+    >
+
+        <div class="fc-modal">
+
+            <button
+                class="fc-modal-close"
+                id="fcModalClose"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+
+            <h3 id="fcModalTitle">
+                Title
+            </h3>
+
+
+            <form id="fcModalForm"></form>
+
+        </div>
+
+    </div>
+
+
+    <script src="facility-command.js"></script>
+
+</body>
+
+</html>

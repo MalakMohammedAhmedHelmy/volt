@@ -19,6 +19,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet"
         href="fontawesome-free-7.3.1-web/fontawesome-free-7.3.1-web/css/all.min.css">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>
@@ -87,9 +88,24 @@
                     </div>
 
 
-                    <div class="icon-box">
-                        <i class="fa-regular fa-heart"></i>
-                    </div>
+                    <div class="wishlist-wrapper" id="wishlistWrapper">
+
+    <div class="icon-box" id="navHeartIcon">
+        <i class="fa-regular fa-heart"></i>
+        <span class="wishlist-badge" id="wishlistBadge" style="display:none;">0</span>
+    </div>
+
+    <div class="wishlist-dropdown" id="wishlistDropdown">
+
+        <h4>YOUR FAVORITES</h4>
+
+        <div class="wishlist-list" id="wishlistList">
+            <p class="wishlist-empty">No favorites yet.</p>
+        </div>
+
+    </div>
+
+</div>
 
 
                     <!-- USER PROFILE -->
@@ -97,33 +113,33 @@
                     <div class="user-profile" id="userProfile">
 
                         <div class="icon-box user-icon" id="userIcon">
-                            <span id="userInitial"></span>
-                        </div>
+    <img id="userIconImg" src="" alt="" style="display:none;">
+    <span id="userInitial"></span>
+</div>
 
                         <div class="profile-dropdown" id="profileDropdown">
 
-                            <div class="profile-info">
+                            <div class="profile-avatar" id="profileAvatar">
+    <img id="profileAvatarImg" src="" alt="" style="display:none;">
+    <i class="fa-solid fa-user" id="profileAvatarIcon"></i>
+    <span id="profileAvatarLetter" style="display:none;"></span>
+</div>
+<input type="file" id="navAvatarInput" accept="image/*" hidden>
 
-                                <div class="profile-avatar" id="profileAvatar">
-                                    M
-                                </div>
+<div>
+    <h4 id="profileName">Guest</h4>
+    <p id="profileEmail"></p>
+</div>
 
-                                <div>
-                                    <h4 id="profileName">Malak Mohamed</h4>
-                                    <p id="profileEmail">email@example.com</p>
-                                </div>
+<div class="profile-divider"></div>
 
-                            </div>
+<button type="button" class="profile-item" id="myProfileBtn">
 
-                            <div class="profile-divider"></div>
+    <i class="fa-regular fa-user"></i>
 
-                            <button type="button" class="profile-item">
+    <span>My Profile</span>
 
-                                <i class="fa-regular fa-user"></i>
-
-                                <span>My Profile</span>
-
-                            </button>
+</button>
 
                             <button type="button" class="profile-item logout-btn" id="logoutBtn">
 
@@ -292,6 +308,22 @@
 
     </button>
 
+    <button class="menu-item" id="cartMenuBtn" type="button">
+
+    <div class="menu-item-icon">
+        <i class="fa-solid fa-cart-shopping"></i>
+    </div>
+
+    <div class="menu-item-text">
+        <strong>My Cart</strong>
+        <span>Review your order</span>
+    </div>
+
+    <span class="menu-cart-badge" id="menuCartBadge" style="display:none;">0</span>
+
+    <i class="fa-solid fa-chevron-right"></i>
+
+</button>
 
     <button class="menu-item" id="contactMenuBtn" type="button">
 
@@ -2243,6 +2275,208 @@
 
     </footer>
 
+
+    <!-- ================= REVIEWS OVERLAY ================= -->
+
+<div class="reviews-overlay" id="reviewsOverlay">
+
+    <div class="reviews-card">
+
+        <button class="reviews-close" id="reviewsClose" type="button">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="reviews-header">
+            <div class="reviews-icon">
+                <i class="fa-solid fa-star"></i>
+            </div>
+
+            <div>
+                <h2>VOLT REVIEWS</h2>
+                <p>See what our members say</p>
+            </div>
+        </div>
+
+        <!-- Reviews will appear here -->
+        <div class="reviews-list" id="reviewsList">
+            <p class="reviews-loading">Loading reviews...</p>
+        </div>
+
+        <!-- Write Review -->
+        <div class="write-review-box">
+
+            <h3>Share Your Experience</h3>
+
+            <textarea
+                id="reviewInput"
+                placeholder="Write your review..."
+                maxlength="1000"
+            ></textarea>
+
+            <button
+                type="button"
+                id="submitReviewBtn"
+                class="submit-review-btn"
+            >
+                <i class="fa-solid fa-paper-plane"></i>
+                Submit Review
+            </button>
+
+            <p id="reviewMessage" class="review-message"></p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= SETTINGS OVERLAY ================= -->
+<div class="reviews-overlay" id="settingsOverlay">
+    <div class="reviews-card" style="max-width:480px;">
+
+        <button class="reviews-close" id="settingsClose" type="button">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="reviews-header">
+            <div class="reviews-icon" style="background:rgba(182,240,0,.12); color:#b6f000;">
+                <i class="fa-solid fa-gear"></i>
+            </div>
+            <div>
+                <h2>SETTINGS</h2>
+                <p>Website preferences</p>
+            </div>
+        </div>
+
+        <div class="settings-list">
+
+            <div class="settings-row">
+                <div><strong>Language</strong><span>عربي / English</span></div>
+                <button class="theme-switch" id="langSwitch" type="button"><span></span></button>
+            </div>
+
+            <div class="settings-row">
+                <div><strong>Notifications</strong><span>Workout reminders & offers</span></div>
+                <button class="theme-switch" id="notifSwitch" type="button"><span></span></button>
+            </div>
+
+            <div class="settings-row">
+                <div><strong>Sound Effects</strong><span>UI click & alert sounds</span></div>
+                <button class="theme-switch" id="soundSwitch" type="button"><span></span></button>
+            </div>
+
+            <div class="settings-row">
+                <div><strong>Email Updates</strong><span>Newsletter & promotions</span></div>
+                <button class="theme-switch" id="emailSwitch" type="button"><span></span></button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ================= CART OVERLAY ================= -->
+<div class="reviews-overlay" id="cartOverlay">
+    <div class="reviews-card" style="max-width:520px;">
+
+        <button class="reviews-close" id="cartClose" type="button">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="reviews-header">
+            <div class="reviews-icon" style="background:rgba(182,240,0,.12); color:#b6f000;">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div>
+                <h2>YOUR CART</h2>
+                <p>Items ready for checkout</p>
+            </div>
+        </div>
+
+        <div class="cart-list" id="cartList">
+            <p class="cart-empty">Your cart is empty.</p>
+        </div>
+
+        <div class="cart-summary" id="cartSummary" style="display:none;">
+            <div class="cart-total-row">
+                <span>Total</span>
+                <strong id="cartTotalPrice">$0.00</strong>
+            </div>
+            <button type="button" class="submit-review-btn" id="cartCheckoutBtn" style="width:100%; justify-content:center;">
+                <i class="fa-solid fa-truck-fast"></i>
+                Proceed to Checkout
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ================= DELIVERY FORM OVERLAY ================= -->
+<div class="reviews-overlay" id="deliveryOverlay">
+    <div class="reviews-card" style="max-width:480px;">
+
+        <button class="reviews-close" id="deliveryClose" type="button">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="reviews-header">
+            <div class="reviews-icon" style="background:rgba(182,240,0,.12); color:#b6f000;">
+                <i class="fa-solid fa-truck-fast"></i>
+            </div>
+            <div>
+                <h2>DELIVERY DETAILS</h2>
+                <p>Where should we send your order?</p>
+            </div>
+        </div>
+
+        <form class="delivery-form" id="deliveryForm">
+
+            <label>Full Name</label>
+            <input type="text" id="deliveryName" placeholder="YOUR NAME" required>
+
+            <label>Phone Number</label>
+            <input type="tel" id="deliveryPhone" placeholder="01XXXXXXXXX" required>
+
+            <label>Delivery Address</label>
+            <textarea id="deliveryAddress" placeholder="STREET, CITY, AREA..." required></textarea>
+
+            <label>Note (Optional)</label>
+            <textarea id="deliveryNote" placeholder="ANY SPECIAL INSTRUCTIONS..."></textarea>
+
+            <button type="submit" class="submit-review-btn" style="width:100%; justify-content:center;">
+                <i class="fa-solid fa-arrow-right"></i>
+                Continue to Payment
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+
+<!-- ================= RECEIPT OVERLAY ================= -->
+<div class="reviews-overlay" id="receiptOverlay">
+    <div class="reviews-card" style="max-width:480px;">
+
+        <button class="reviews-close" id="receiptClose" type="button">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="receipt-success-icon">
+            <i class="fa-solid fa-check"></i>
+        </div>
+
+        <h2 class="receipt-title">Order Confirmed!</h2>
+        <p class="receipt-subtitle">Thanks for your order. Here's your receipt.</p>
+
+        <div class="receipt-box" id="receiptBox"></div>
+
+        <button type="button" class="submit-review-btn" id="receiptDoneBtn" style="width:100%; justify-content:center;">
+            DONE
+        </button>
+
+    </div>
+</div>
 
     <script src="main.js"></script>
 
